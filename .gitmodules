@@ -1,0 +1,3 @@
+[submodule "GiveCRM_App"]
+	path = GiveCRM_App
+	url = git@github.com:GiveCampUK/GiveCRM.git
