@@ -1,5 +1,0 @@
-C:\Users\Robin.Minto\Documents\Visual Studio 2010\Projects\GiveCRM.Admin\GiveCRM.Admin.DataAccess\bin\Debug\GiveCRM.Admin.DataAccess.dll
-C:\Users\Robin.Minto\Documents\Visual Studio 2010\Projects\GiveCRM.Admin\GiveCRM.Admin.DataAccess\bin\Debug\GiveCRM.Admin.DataAccess.pdb
-C:\Users\Robin.Minto\Documents\Visual Studio 2010\Projects\GiveCRM.Admin\GiveCRM.Admin.DataAccess\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Robin.Minto\Documents\Visual Studio 2010\Projects\GiveCRM.Admin\GiveCRM.Admin.DataAccess\obj\Debug\GiveCRM.Admin.DataAccess.dll
-C:\Users\Robin.Minto\Documents\Visual Studio 2010\Projects\GiveCRM.Admin\GiveCRM.Admin.DataAccess\obj\Debug\GiveCRM.Admin.DataAccess.pdb
