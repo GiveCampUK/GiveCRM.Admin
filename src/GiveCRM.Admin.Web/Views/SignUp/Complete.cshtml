@@ -13,28 +13,28 @@
         <div>
             <fieldset>
                 <div class="clearfix">
-                    @Html.LabelFor(m => m.AdditionalInfo.UserName, "Your Name")
+                    @Html.LabelFor(m => m.UserName, "Your Name")
                     <div class="input">
-                        @Html.TextBoxFor(m => m.AdditionalInfo.UserName)
-                        @Html.ValidationMessageFor(m => m.AdditionalInfo.UserName)
+                        @Html.TextBoxFor(m => m.UserName)
+                        @Html.ValidationMessageFor(m => m.UserName)
                     </div>
                 </div>
 
                 <div class="clearfix">
-                    @Html.LabelFor(m => m.AdditionalInfo.RegisteredCharityNumber, "Registered Charity Number")
+                    @Html.LabelFor(m => m.RegisteredCharityNumber, "Registered Charity Number")
                     <div class="input">
-                        @Html.TextBoxFor(m => m.AdditionalInfo.RegisteredCharityNumber)
-                        @Html.ValidationMessageFor(m => m.AdditionalInfo.RegisteredCharityNumber)
+                        @Html.TextBoxFor(m => m.RegisteredCharityNumber)
+                        @Html.ValidationMessageFor(m => m.RegisteredCharityNumber)
                     </div>
                 </div>
 
                 <div class="clearfix">
-                    @Html.LabelFor(m => m.AdditionalInfo.SubDomain, "Your Domain Name")
+                    @Html.LabelFor(m => m.SubDomain, "Your Domain Name")
                     <div class="input">
                         http://
-                        @Html.TextBoxFor(m => m.AdditionalInfo.SubDomain, new { @class = "span3" })
-                        @Html.ValidationMessageFor(m => m.AdditionalInfo.SubDomain)
-                        @Model.Configuration.BaseDomain
+                        @Html.TextBoxFor(m => m.SubDomain, new { @class = "span3" })
+                        .@Model.BaseDomain
+                        @Html.ValidationMessageFor(m => m.SubDomain)
                     </div>
                 </div>
 
@@ -51,7 +51,12 @@
     <div class="span16">
         <div>
             <h4>To upload your customer list, we need the data in our format.</h4>
-            <a href="@Model.Configuration.ExcelTemplatePath">Download the Excel template</a>
+            <a href="@Model.ExcelTemplatePath">Download the Excel template</a>
         </div>
     </div>
 </div>
+<script language="javascript">
+    $(document).ready(function () {
+        $('.field-validation-error').parent().parent().addClass('error');
+    });
+</script>

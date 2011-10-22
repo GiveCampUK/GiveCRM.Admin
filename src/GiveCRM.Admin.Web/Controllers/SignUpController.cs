@@ -45,19 +45,15 @@ namespace GiveCRM.Admin.Web.Controllers
             return RedirectToAction("Complete");
         }
 
+        [HttpGet]
         public ActionResult Complete()
         {
-            var charityName = TempData["SubDomain"] as string;
+            var subDomain = TempData["SubDomain"] as string;
 
-            var additionalInfo = new AdditionalInfo
-                                {
-                                    SubDomain = charityName
-                                };
             var viewModel = new Complete
                                 {
-                                    AdditionalInfo = additionalInfo,
-                                    Configuration = configuration
-                                };
+                                    SubDomain = subDomain
+                                }.WithConfig(configuration);
 
             return View(viewModel);
         }
@@ -66,6 +62,29 @@ namespace GiveCRM.Admin.Web.Controllers
         {
             var result = Regex.Replace(charityName, @"[\s]", "-");
             return Regex.Replace(result, @"[^\w-]", "");
+        }
+
+        [HttpPost]
+        public ActionResult StoreAdditionalInfo(Complete complete)
+        {
+            var viewModel = complete.WithConfig(configuration);
+
+            if (!ModelState.IsValid)
+            {
+                return View("Complete", viewModel);
+            }
+
+            return View("Complete", viewModel);
+        }
+
+        private Complete GetCompletionViewModelWithConfig()
+        {
+            var viewModel = new Complete
+                                {
+                                    BaseDomain = configuration.BaseDomain,
+                                    ExcelTemplatePath = configuration.ExcelTemplatePath
+                                };
+            return viewModel;
         }
     }
 }

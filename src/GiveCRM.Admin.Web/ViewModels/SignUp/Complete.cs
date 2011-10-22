@@ -1,10 +1,25 @@
-﻿using GiveCRM.Admin.Web.Interfaces;
+﻿using System.ComponentModel.DataAnnotations;
+using GiveCRM.Admin.Web.Interfaces;
 
 namespace GiveCRM.Admin.Web.ViewModels.SignUp
 {
-    public class Complete
+    public class Complete : IAdditionalInfo, IConfiguration
     {
-        public AdditionalInfo AdditionalInfo { get; set; }
-        public IConfiguration Configuration { get; set; }
+        //IAdditionalInfo
+        public string UserName { get; set; }
+        public string RegisteredCharityNumber { get; set; }
+        [Required(ErrorMessage = "Please enter a subdomain")]
+        public string SubDomain { get; set; }
+
+        //IConfiguration
+        public string BaseDomain { get; set; }
+        public string ExcelTemplatePath { get; set; }
+
+        public Complete WithConfig(IConfiguration configuration)
+        {
+            BaseDomain = configuration.BaseDomain;
+            ExcelTemplatePath = configuration.ExcelTemplatePath;
+            return this;
+        }
     }
 }
