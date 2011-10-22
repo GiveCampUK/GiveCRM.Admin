@@ -3,40 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GiveCRM.Admin.Web.ViewModels;
 
 namespace GiveCRM.Admin.Web.Controllers
 {
     public class ExcelImportController : Controller
     {
-        private const string ExcelMimeType = "application/vnd.ms-excel";
-        private const string ExcelTemplatePath = "../Content/files/GiveCRM_Template.xls";
-
         public ActionResult Index()
         {
-            return View();
+           return View(new ExcelImportViewModel());
         }
 
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
+        public ActionResult Upload(HttpPostedFileBase file)
         {
             if (file == null)
             {
                 ViewBag.Error = "You did not select a file for upload.";
-                return View();
+                return View("Index", new ExcelImportViewModel());
             }
             
             if (file.ContentLength <= 0)
             {
                 ViewBag.Error = "The file you uploaded was empty.";
-                return View();
+                return View("Index");
             }
 
-            return RedirectToAction("Index", "Dashboard");
-        }
+            // Process the file
 
-        public ActionResult Template()
-        {
-            return File(ExcelTemplatePath, ExcelMimeType);
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }

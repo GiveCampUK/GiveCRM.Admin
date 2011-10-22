@@ -1,19 +1,32 @@
-﻿@model object
+﻿@model GiveCRM.Admin.Web.ViewModels.ExcelImportViewModel
+
 @{
     ViewBag.Title = "GiveCRM :: Add your list of members";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="row">
     <div class="span16">
         <h1>Add your list of members</h1>
     </div>
 </div>
+
+@if (ViewBag.Error != null)
+{
+    <div class="row">
+        <div class="span12 offset2">
+            <div class="alert-message error">
+                <p><strong>Ooops!</strong> @ViewBag.Error  Please try again.</p>
+            </div>
+        </div>
+    </div>
+}
+
 <div class="row">
     <div class="span12 offset2">
         <h2>1. Download the template</h2>
         <div>
             <p>To upload your member list, we need the data in our format.</p>
-            <p>@Html.ActionLink("Download the Excel template", "Template")</p>
+            <p><a href="@Url.Content(Model.ExcelTemplatePath)">Download the Excel template</a></p>
         </div>
     </div>
 </div>
@@ -26,7 +39,7 @@
 <div class="row">
     <div class="span12 offset2">
         <h2>3. Upload the spreadsheet</h2>
-        <form action="" method="POST">
+        <form action="@Url.Action("Upload")" method="POST">
         <fieldset>
             <p><input type="file" /></p>
             <p><button class="btn primary large">Upload your member list</button></p>
