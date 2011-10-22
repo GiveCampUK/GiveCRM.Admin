@@ -5,6 +5,5 @@
         public string UserName { get; set; }
         public string RegisteredCharityNumber { get; set; }
         public string SubDomain { get; set; }
-        public string BaseDomain { get; set; }
     }
 }

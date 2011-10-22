@@ -1,6 +1,6 @@
-﻿namespace GiveCRM.Admin.Models
+﻿namespace GiveCRM.Admin.Web.ViewModels.SignUp
 {
-    public class SignUp
+    public class RequiredInfo
     {
         public string UserIdentifier { get; set; }
         public string Password { get; set; }

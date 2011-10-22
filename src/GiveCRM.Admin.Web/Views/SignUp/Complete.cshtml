@@ -1,4 +1,4 @@
-﻿@model GiveCRM.Admin.Web.ViewModels.SignUp.AdditionalInfo
+﻿@model GiveCRM.Admin.Web.ViewModels.SignUp.Complete
 
 @{
     ViewBag.Title = "GiveCRM - we're setting up your site";
@@ -16,28 +16,28 @@
                 <legend>While you're waiting, we need a little more information:</legend>
 
                 <div>
-                    @Html.LabelFor(m => m.UserName, "Your Name")
+                    @Html.LabelFor(m => m.AdditionalInfo.UserName, "Your Name")
                     <div class="input">
-                        @Html.TextBoxFor(m => m.UserName)
-                        @Html.ValidationMessageFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.AdditionalInfo.UserName)
+                        @Html.ValidationMessageFor(m => m.AdditionalInfo.UserName)
                     </div>
                 </div>
 
                 <div>
-                    @Html.LabelFor(m => m.RegisteredCharityNumber, "Registered Charity Number")
+                    @Html.LabelFor(m => m.AdditionalInfo.RegisteredCharityNumber, "Registered Charity Number")
                     <div class="input">
-                        @Html.TextBoxFor(m => m.RegisteredCharityNumber)
-                        @Html.ValidationMessageFor(m => m.RegisteredCharityNumber)
+                        @Html.TextBoxFor(m => m.AdditionalInfo.RegisteredCharityNumber)
+                        @Html.ValidationMessageFor(m => m.AdditionalInfo.RegisteredCharityNumber)
                     </div>
                 </div>
 
                 <div>
-                    @Html.LabelFor(m => m.SubDomain, "Your Domain Name")
+                    @Html.LabelFor(m => m.AdditionalInfo.SubDomain, "Your Domain Name")
                     <div class="input">
                         http://
-                        @Html.TextBoxFor(m => m.SubDomain, new { @class = "span2" } )
-                        @Html.ValidationMessageFor(m => m.SubDomain)
-                        @Model.BaseDomain
+                        @Html.TextBoxFor(m => m.AdditionalInfo.SubDomain, new { @class = "span2" })
+                        @Html.ValidationMessageFor(m => m.AdditionalInfo.SubDomain)
+                        @Model.Configuration.BaseDomain
                     </div>
                 </div>
 
@@ -47,5 +47,12 @@
             </fieldset>
         </div>
     }
+    </div>
+
+    <div class="span16">
+        <div>
+            <h4>To upload your customer list, we need the data in our format.</h4>
+            <a href="@Model.Configuration.ExcelTemplatePath">Download the Excel template</a>
+        </div>
     </div>
 </div>
