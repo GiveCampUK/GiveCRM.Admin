@@ -62,7 +62,7 @@ namespace GiveCRM.Admin.Web.Controllers
         {
             var subDomain = TempData["SubDomain"] as string;
 
-            var viewModel = new Complete
+            var viewModel = new CompleteViewModel
                                 {
                                     SubDomain = subDomain
                                 }.WithConfig(configuration);
@@ -77,9 +77,9 @@ namespace GiveCRM.Admin.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult StoreAdditionalInfo(Complete complete)
+        public ActionResult StoreAdditionalInfo(CompleteViewModel completeViewModel)
         {
-            var viewModel = complete.WithConfig(configuration);
+            var viewModel = completeViewModel.WithConfig(configuration);
 
             if (!ModelState.IsValid)
             {

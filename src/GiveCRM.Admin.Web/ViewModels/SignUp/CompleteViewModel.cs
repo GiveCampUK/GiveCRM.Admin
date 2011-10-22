@@ -3,7 +3,7 @@ using GiveCRM.Admin.Web.Interfaces;
 
 namespace GiveCRM.Admin.Web.ViewModels.SignUp
 {
-    public class Complete : IAdditionalInfo, IConfiguration
+    public class CompleteViewModel : IAdditionalInfo, IConfiguration
     {
         //IAdditionalInfo
         public string UserName { get; set; }
@@ -15,7 +15,7 @@ namespace GiveCRM.Admin.Web.ViewModels.SignUp
         public string BaseDomain { get; set; }
         public string ExcelTemplatePath { get; set; }
 
-        public Complete WithConfig(IConfiguration configuration)
+        public CompleteViewModel WithConfig(IConfiguration configuration)
         {
             BaseDomain = configuration.BaseDomain;
             ExcelTemplatePath = configuration.ExcelTemplatePath;
