@@ -1,5 +1,4 @@
-﻿@model GiveCRM.Admin.Web.ViewModels.SignUp.RequiredInfo
-
+﻿
 @{
     ViewBag.Title = "GiveCRM";
 }
@@ -13,45 +12,6 @@
         </ul>
       </div>
       <div class="span6">
-        @using (Html.BeginForm("SignUp", "SignUp")) {
-            <div>
-                <fieldset>
-                    <legend>Sign Up</legend>
-
-                    <div>
-                        @Html.LabelFor(m => m.UserIdentifier, "Email Address")
-                        <div class="input">
-                            @Html.TextBoxFor(m => m.UserIdentifier)
-                            @Html.ValidationMessageFor(m => m.UserIdentifier)
-                        </div>
-                    </div>
-
-                    <div>
-                        @Html.LabelFor(m => m.Password)
-                        <div class="input">
-                            @Html.TextBoxFor(m => m.Password)
-                            @Html.ValidationMessageFor(m => m.Password)
-                        </div>
-                    </div>
-
-                    <div>
-                        @Html.LabelFor(m => m.CharityName, "Charity Name")
-                        <div class="input">
-                            @Html.TextBoxFor(m => m.CharityName)
-                            @Html.ValidationMessageFor(m => m.CharityName)
-                        </div>
-                    </div>
-
-                    <div class="input">
-                        @Html.CheckBoxFor(m => m.TermsAccepted)
-                        @Html.LabelFor(m => m.TermsAccepted)
-                    </div>
-
-                    <p>
-                        <input type="submit" value="Sign Up" class="btn large primary" />
-                    </p>
-                </fieldset>
-            </div>
-        }
+        @Html.Partial("SignUpForm")
       </div>
     </div>

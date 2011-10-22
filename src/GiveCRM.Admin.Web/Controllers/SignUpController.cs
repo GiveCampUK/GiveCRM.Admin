@@ -29,6 +29,11 @@ namespace GiveCRM.Admin.Web.Controllers
         [HttpPost]
         public ActionResult SignUp(RequiredInfo requiredInfo)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(requiredInfo);
+            }
+
             var subDomain = GetSubDomainFromCharityName(requiredInfo.CharityName);
             /*
             Add membership record inc. domain information
