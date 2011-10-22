@@ -1,5 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using GiveCRM.Admin.Web.Extensions;
+using GiveCRM.Admin.Web.Helpers;
 using GiveCRM.Admin.Web.Interfaces;
 using GiveCRM.Admin.Web.Services;
 using GiveCRM.Admin.Web.ViewModels.SignUp;
@@ -36,10 +39,17 @@ namespace GiveCRM.Admin.Web.Controllers
             }
 
             var subDomain = GetSubDomainFromCharityName(requiredInfo.CharityName);
+            var activationToken = TokenHelper.CreateRandomIdentifier();
             /*
             Add membership record inc. domain information
             */
-            signUpQueueingService.QueueEmail();
+            var emailViewModel = new EmailViewModel
+                                     {
+                                         To = requiredInfo.UserIdentifier,
+                                         ActivationToken = activationToken.AsQueryString()
+                                     };
+
+            signUpQueueingService.QueueEmail(emailViewModel);
             signUpQueueingService.QueueProvisioning();
 
             TempData["SubDomain"] = subDomain;

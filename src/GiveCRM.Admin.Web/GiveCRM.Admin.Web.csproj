@@ -73,6 +73,8 @@
     <Compile Include="Controllers\ExcelImportController.cs" />
     <Compile Include="Controllers\HardCodedConfiguration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions\GuidExtensions.cs" />
+    <Compile Include="Helpers\TokenHelper.cs" />
     <Compile Include="Interfaces\ISignUpQueueingService.cs" />
     <Compile Include="Interfaces\IConfiguration.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="ViewModels\ExcelImportViewModel.cs" />
     <Compile Include="ViewModels\SignUp\Complete.cs" />
     <Compile Include="Interfaces\IAdditionalInfo.cs" />
+    <Compile Include="ViewModels\SignUp\EmailViewModel.cs" />
     <Compile Include="ViewModels\SignUp\RequiredInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -157,7 +160,7 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
+          <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>50837</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:50837/</IISUrl>
