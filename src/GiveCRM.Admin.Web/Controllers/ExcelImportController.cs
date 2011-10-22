@@ -19,8 +19,15 @@ namespace GiveCRM.Admin.Web.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
+            if (file == null)
+            {
+                ViewBag.Error = "You did not select a file for upload.";
+                return View();
+            }
+            
             if (file.ContentLength <= 0)
             {
+                ViewBag.Error = "The file you uploaded was empty.";
                 return View();
             }
 
