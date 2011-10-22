@@ -18,7 +18,14 @@ namespace GiveCRM.Admin.Web.Controllers
             this.configuration = configuration;
         }
 
+        [HttpGet]
         public ActionResult SignUp()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult SignUp(RequiredInfo requiredInfo)
         {
             /*
             Add membership record
