@@ -47,6 +47,12 @@
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC3.2.2.2.0\lib\net40-Full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Postal">
+      <HintPath>..\packages\postal.0.6.4\lib\net40\Postal.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.2.1\lib\.NetFramework 4.0\RazorEngine.dll</HintPath>
+    </Reference>
     <Reference Include="Simple.Data">
       <HintPath>..\packages\Simple.Data.Core.0.9.8.1\lib\net40\Simple.Data.dll</HintPath>
     </Reference>
@@ -58,6 +64,10 @@
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\RazorEngine.2.1\lib\.NetFramework 4.0\System.Web.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
@@ -90,6 +100,9 @@
     <Compile Include="Controllers\FileSystemWrapper.cs" />
     <Compile Include="Controllers\HardCodedConfiguration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions\GuidExtensions.cs" />
+    <Compile Include="Helpers\TokenHelper.cs" />
+    <Compile Include="Interfaces\ISignUpQueueingService.cs" />
     <Compile Include="Interfaces\IConfiguration.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Global.asax.cs">
@@ -100,6 +113,13 @@
     <Compile Include="ViewModels\ExcelImportViewModel.cs" />
     <Compile Include="ViewModels\SignUp\AdditionalInfo.cs" />
     <Compile Include="ViewModels\SignUp\Complete.cs" />
+    <Compile Include="ViewModels\SignUp\RequiredInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\SignUpNonQueueingService.cs" />
+    <Compile Include="ViewModels\ExcelImportViewModel.cs" />
+    <Compile Include="ViewModels\SignUp\Complete.cs" />
+    <Compile Include="Interfaces\IAdditionalInfo.cs" />
+    <Compile Include="ViewModels\SignUp\EmailViewModel.cs" />
     <Compile Include="ViewModels\SignUp\RequiredInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +134,9 @@
     <Content Include="Scripts\bootstrap-scrollspy.js" />
     <Content Include="Scripts\bootstrap-tabs.js" />
     <Content Include="Scripts\bootstrap-twipsy.js" />
+    <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.4.js" />
+    <Content Include="Scripts\jquery-1.6.4.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -130,6 +153,8 @@
     <None Include="Content\files\GiveCRM_Template.xls" />
     <Content Include="Views\SignUp\SignUp.cshtml" />
     <Content Include="Views\Shared\SignUpForm.cshtml" />
+    <Content Include="Views\Emails\SignUp.cshtml" />
+    <Content Include="Views\Emails\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -172,7 +197,7 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
+          <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>50837</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:50837/</IISUrl>

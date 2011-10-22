@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
-using GiveCRM.Admin.Models;
+using GiveCRM.Admin.Web.Extensions;
+using GiveCRM.Admin.Web.Helpers;
 using GiveCRM.Admin.Web.Interfaces;
+using GiveCRM.Admin.Web.Services;
 using GiveCRM.Admin.Web.ViewModels.SignUp;
 
 namespace GiveCRM.Admin.Web.Controllers
@@ -11,14 +12,16 @@ namespace GiveCRM.Admin.Web.Controllers
     public class SignUpController : Controller
     {
         private readonly IConfiguration configuration;
+        private readonly ISignUpQueueingService signUpQueueingService;
 
         // TODO IoC here
-        public SignUpController() : this(new HardCodedConfiguration())
+        public SignUpController() : this(new HardCodedConfiguration(), new SignUpNonQueueingService())
         { }
 
-        public SignUpController(IConfiguration configuration)
+        public SignUpController(IConfiguration configuration, ISignUpQueueingService signUpQueueingService)
         {
             this.configuration = configuration;
+            this.signUpQueueingService = signUpQueueingService;
         }
 
         [HttpGet]
@@ -36,29 +39,33 @@ namespace GiveCRM.Admin.Web.Controllers
             }
 
             var subDomain = GetSubDomainFromCharityName(requiredInfo.CharityName);
+            var activationToken = TokenHelper.CreateRandomIdentifier();
             /*
             Add membership record inc. domain information
-            Queue activation email sending
-            Queue provisioning 
             */
+            var emailViewModel = new EmailViewModel
+                                     {
+                                         To = requiredInfo.UserIdentifier,
+                                         ActivationToken = activationToken.AsQueryString()
+                                     };
+
+            signUpQueueingService.QueueEmail(emailViewModel);
+            signUpQueueingService.QueueProvisioning();
+
             TempData["SubDomain"] = subDomain;
 
             return RedirectToAction("Complete");
         }
 
+        [HttpGet]
         public ActionResult Complete()
         {
-            var charityName = TempData["SubDomain"] as string;
+            var subDomain = TempData["SubDomain"] as string;
 
-            var additionalInfo = new AdditionalInfo
-                                {
-                                    SubDomain = charityName
-                                };
             var viewModel = new Complete
                                 {
-                                    AdditionalInfo = additionalInfo,
-                                    Configuration = configuration
-                                };
+                                    SubDomain = subDomain
+                                }.WithConfig(configuration);
 
             return View(viewModel);
         }
@@ -67,6 +74,19 @@ namespace GiveCRM.Admin.Web.Controllers
         {
             var result = Regex.Replace(charityName, @"[\s]", "-");
             return Regex.Replace(result, @"[^\w-]", "");
+        }
+
+        [HttpPost]
+        public ActionResult StoreAdditionalInfo(Complete complete)
+        {
+            var viewModel = complete.WithConfig(configuration);
+
+            if (!ModelState.IsValid)
+            {
+                return View("Complete", viewModel);
+            }
+
+            return View("Complete", viewModel);
         }
     }
 }
