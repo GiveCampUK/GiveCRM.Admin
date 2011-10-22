@@ -109,10 +109,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IFileSystemWrapper.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ExcelImportViewModel.cs" />
-    <Compile Include="ViewModels\SignUp\AdditionalInfo.cs" />
-    <Compile Include="ViewModels\SignUp\Complete.cs" />
     <Compile Include="ViewModels\SignUp\RequiredInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SignUpNonQueueingService.cs" />
@@ -120,7 +116,6 @@
     <Compile Include="ViewModels\SignUp\Complete.cs" />
     <Compile Include="Interfaces\IAdditionalInfo.cs" />
     <Compile Include="ViewModels\SignUp\EmailViewModel.cs" />
-    <Compile Include="ViewModels\SignUp\RequiredInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
