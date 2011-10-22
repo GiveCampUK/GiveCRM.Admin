@@ -1,8 +1,7 @@
-﻿using System;
-using System.Configuration;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using GiveCRM.Admin.Web.Interfaces;
+using GiveCRM.Admin.Web.Services;
 using GiveCRM.Admin.Web.ViewModels.SignUp;
 
 namespace GiveCRM.Admin.Web.Controllers
@@ -10,14 +9,16 @@ namespace GiveCRM.Admin.Web.Controllers
     public class SignUpController : Controller
     {
         private readonly IConfiguration configuration;
+        private readonly ISignUpQueueingService signUpQueueingService;
 
         // TODO IoC here
-        public SignUpController() : this(new HardCodedConfiguration())
+        public SignUpController() : this(new HardCodedConfiguration(), new SignUpNonQueueingService())
         { }
 
-        public SignUpController(IConfiguration configuration)
+        public SignUpController(IConfiguration configuration, ISignUpQueueingService signUpQueueingService)
         {
             this.configuration = configuration;
+            this.signUpQueueingService = signUpQueueingService;
         }
 
         [HttpGet]
@@ -37,9 +38,10 @@ namespace GiveCRM.Admin.Web.Controllers
             var subDomain = GetSubDomainFromCharityName(requiredInfo.CharityName);
             /*
             Add membership record inc. domain information
-            Queue activation email sending
-            Queue provisioning 
             */
+            signUpQueueingService.QueueEmail();
+            signUpQueueingService.QueueProvisioning();
+
             TempData["SubDomain"] = subDomain;
 
             return RedirectToAction("Complete");
@@ -75,16 +77,6 @@ namespace GiveCRM.Admin.Web.Controllers
             }
 
             return View("Complete", viewModel);
-        }
-
-        private Complete GetCompletionViewModelWithConfig()
-        {
-            var viewModel = new Complete
-                                {
-                                    BaseDomain = configuration.BaseDomain,
-                                    ExcelTemplatePath = configuration.ExcelTemplatePath
-                                };
-            return viewModel;
         }
     }
 }
