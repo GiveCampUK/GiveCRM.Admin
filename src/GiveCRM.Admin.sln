@@ -12,6 +12,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.Models.Test", "GiveCRM.Admin.Models.Test\GiveCRM.Admin.Models.Test.csproj", "{CC9452D6-1BFC-45BA-96CD-3BB3E7CF9FBE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.DataAccess.Test", "GiveCRM.Admin.DataAccess.Test\GiveCRM.Admin.DataAccess.Test.csproj", "{F9EB7CBA-5A08-4187-86A8-5E4232530E32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.Web.Tests", "GiveCRM.Admin.Web.Tests\GiveCRM.Admin.Web.Tests.csproj", "{D2D6B6C8-6EBA-4EA4-8B38-96287566BBED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +46,10 @@ Global
 		{F9EB7CBA-5A08-4187-86A8-5E4232530E32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9EB7CBA-5A08-4187-86A8-5E4232530E32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9EB7CBA-5A08-4187-86A8-5E4232530E32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D6B6C8-6EBA-4EA4-8B38-96287566BBED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D6B6C8-6EBA-4EA4-8B38-96287566BBED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D6B6C8-6EBA-4EA4-8B38-96287566BBED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D6B6C8-6EBA-4EA4-8B38-96287566BBED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
