@@ -61,6 +61,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\GiveCRM_App\src\GiveCRM.ImportExport\GiveCRM.ImportExport\GiveCRM.ImportExport.csproj">
+      <Project>{191D37B7-B50F-45D5-9336-1A700F719617}</Project>
+      <Name>GiveCRM.ImportExport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GiveCRM.Admin.Web\GiveCRM.Admin.Web.csproj">
       <Project>{50A2C082-28AC-46E5-A9CF-C4CC1456B354}</Project>
       <Name>GiveCRM.Admin.Web</Name>
