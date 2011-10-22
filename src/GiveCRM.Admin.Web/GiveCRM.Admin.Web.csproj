@@ -90,7 +90,6 @@
     <Compile Include="Controllers\FileSystemWrapper.cs" />
     <Compile Include="Controllers\HardCodedConfiguration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IExcelImportService.cs" />
     <Compile Include="Interfaces\IConfiguration.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Global.asax.cs">
@@ -145,6 +144,10 @@
     <ProjectReference Include="..\..\GiveCRM_App\src\GiveCRM.ImportExport\GiveCRM.ImportExport\GiveCRM.ImportExport.csproj">
       <Project>{191D37B7-B50F-45D5-9336-1A700F719617}</Project>
       <Name>GiveCRM.ImportExport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GiveCRM.Admin.BusinessLogic\GiveCRM.Admin.BusinessLogic.csproj">
+      <Project>{6442A87F-51D2-4694-B712-61D4512B162A}</Project>
+      <Name>GiveCRM.Admin.BusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\GiveCRM.Admin.Models\GiveCRM.Admin.Models.csproj">
       <Project>{D00A47FB-4BAC-44C8-B7EF-6A42B268C9A0}</Project>
