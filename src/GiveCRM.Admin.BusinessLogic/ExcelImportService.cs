@@ -9,6 +9,25 @@ namespace GiveCRM.Admin.BusinessLogic
 {
     public class ExcelImportService : IExcelImportService
     {
+
+        //CREATE TABLE [dbo].[Member]
+        //(
+        //    ID int identity(1,1) NOT NULL PRIMARY KEY, 
+        //    Reference nvarchar(20) NOT NULL,
+        //    Title nvarchar(20) NULL,
+        //    FirstName nvarchar(50) NOT NULL,
+        //    LastName nvarchar(50) NOT NULL,
+        //    Salutation nvarchar(50) NOT NULL,
+        //    EmailAddress nvarchar(50) NULL,
+        //    AddressLine1 nvarchar(50) NULL,
+        //    AddressLine2 nvarchar(50) NULL,
+        //    Town nvarchar(50) NULL,
+        //    Region nvarchar(50) NULL,
+        //    PostalCode nvarchar(50) NULL,
+        //    Country nvarchar(50) NULL
+        //)
+
+
         private readonly IExcelImport importer;
 
         public ExcelImportService(IExcelImport importer)
@@ -36,15 +55,22 @@ namespace GiveCRM.Admin.BusinessLogic
 
         #endregion
 
-
         public IEnumerable<IDictionary<string, object>> Import(Stream file, Action callback = null)
         {
-            importer.Open(file, ExcelFileType.XLS, true); // Hard-coded for now - FIX THIS!!!
-
-            // Hard-coded for now
-            IEnumerable<IDictionary<string, object>> rowsAsKeyValuePairs = importer.GetRowsAsKeyValuePairs(0);
+            // Hard-coded for now - FIX THIS!!!
+            importer.Open(file, ExcelFileType.XLS, hasHeaderRow:true);
 
             var db = Database.OpenConnection(""); // TODO
+
+            //  FIELDS THAT CANNOT BE NULL!
+            //    Reference
+            //    FirstName
+            //    LastName
+            //    Salutation
+
+            // Hard-coded for now
+            const int sheetIndex = 0;
+            IEnumerable<IDictionary<string, object>> rowsAsKeyValuePairs = importer.GetRowsAsKeyValuePairs(sheetIndex);
 
             db.Members.Insert(rowsAsKeyValuePairs);
 
