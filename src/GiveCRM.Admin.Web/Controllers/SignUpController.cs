@@ -29,23 +29,24 @@ namespace GiveCRM.Admin.Web.Controllers
         [HttpPost]
         public ActionResult SignUp(RequiredInfo requiredInfo)
         {
+            var subDomain = GetSubDomainFromCharityName(requiredInfo.CharityName);
             /*
-            Add membership record
+            Add membership record inc. domain information
             Queue activation email sending
             Queue provisioning 
             */
-            TempData["CharityName"] = requiredInfo.CharityName;
+            TempData["SubDomain"] = subDomain;
 
             return RedirectToAction("Complete");
         }
 
         public ActionResult Complete()
         {
-            var charityName = TempData["CharityName"] as string;
+            var charityName = TempData["SubDomain"] as string;
 
             var additionalInfo = new AdditionalInfo
                                 {
-                                    SubDomain = GetSubDomainFromCharityName(charityName)
+                                    SubDomain = charityName
                                 };
             var viewModel = new Complete
                                 {
