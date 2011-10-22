@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using System.Web.Routing;
 using GiveCRM.Admin.Web.Controllers;
 using Moq;
 using NUnit.Framework;
@@ -51,6 +52,18 @@ namespace GiveCRM.Admin.Web.Tests
             var result = controller.Upload(file.Object) as ViewResult;
 
             Assert.IsNotNull(result.ViewBag.Error);
+        }
+
+        [Test]
+        public void RedirectToDashboardIndex_WhenFileIsValidForImport()
+        {
+            var file = new Mock<HttpPostedFileBase>();
+            file.Setup(f => f.ContentLength).Returns(4096);
+
+            var result = controller.Upload(file.Object) as RedirectToRouteResult;
+            
+            Assert.AreEqual("Dashboard", result.RouteValues["controller"]);
+            Assert.AreEqual("Index", result.RouteValues["action"]);
         }
     }
 }
