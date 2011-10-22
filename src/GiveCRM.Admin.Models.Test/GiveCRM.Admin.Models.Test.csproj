@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5E73464B-0363-49C2-93E8-92B81E564DB0}</ProjectGuid>
+    <ProjectGuid>{CC9452D6-1BFC-45BA-96CD-3BB3E7CF9FBE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GiveCRM.Admin.DataAccess</RootNamespace>
-    <AssemblyName>GiveCRM.Admin.DataAccess</AssemblyName>
+    <RootNamespace>GiveCRM.Admin.Models.Test</RootNamespace>
+    <AssemblyName>GiveCRM.Admin.Models.Test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,14 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Simple.Data">
-      <HintPath>..\packages\Simple.Data.Core.0.9.8.1\lib\net40\Simple.Data.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data.Ado">
-      <HintPath>..\packages\Simple.Data.Ado.0.9.8.1\lib\net40\Simple.Data.Ado.dll</HintPath>
+    <Reference Include="nunit.mocks">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data.SqlServer">
-      <HintPath>..\packages\Simple.Data.SqlServer.0.9.8.1\lib\net40\Simple.Data.SqlServer.dll</HintPath>
+    <Reference Include="pnunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Charities.cs" />
+    <Compile Include="CharityTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

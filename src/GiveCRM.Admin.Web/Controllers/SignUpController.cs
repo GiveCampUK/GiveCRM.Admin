@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using GiveCRM.Admin.Models;
 using GiveCRM.Admin.Web.Interfaces;
 using GiveCRM.Admin.Web.ViewModels.SignUp;
 
@@ -29,6 +30,11 @@ namespace GiveCRM.Admin.Web.Controllers
         [HttpPost]
         public ActionResult SignUp(RequiredInfo requiredInfo)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(requiredInfo);
+            }
+
             var subDomain = GetSubDomainFromCharityName(requiredInfo.CharityName);
             /*
             Add membership record inc. domain information
