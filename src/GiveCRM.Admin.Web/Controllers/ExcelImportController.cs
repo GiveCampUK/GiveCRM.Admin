@@ -8,6 +8,9 @@ namespace GiveCRM.Admin.Web.Controllers
 {
     public class ExcelImportController : Controller
     {
+        private const string ExcelMimeType = "application/vnd.ms-excel";
+        private const string ExcelTemplatePath = "GiveCRM_Template.xls";
+
         public ActionResult Index()
         {
             return View();
@@ -22,6 +25,11 @@ namespace GiveCRM.Admin.Web.Controllers
             }
 
             return RedirectToAction("Index", "Dashboard");
+        }
+
+        public ActionResult Template()
+        {
+            return File(ExcelTemplatePath, ExcelMimeType);
         }
     }
 }

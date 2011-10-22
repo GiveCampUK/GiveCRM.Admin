@@ -1,8 +1,13 @@
 ﻿@model object
 
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+    ViewBag.Title = "GiveCRM :: Add your list of members";
+    Layout = "~/Views/Shared/_Layout";
 }
 
-<h2>title</h2>
+<h1>Add your list of members</h1>
+<h2>1. Download the template</h2>
+<div><p>To upload your member list, we need the data in our format.</p>
+<p>@Html.ActionLink("Download the Excel template", "Template")</p></div>
+<h2>2. Enter your data into the template spreadsheet</h2>
+<h2>3. Upload the spreadsheet</h2>
