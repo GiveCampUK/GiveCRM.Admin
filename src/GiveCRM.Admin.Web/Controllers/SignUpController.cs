@@ -6,6 +6,12 @@ namespace GiveCRM.Admin.Web.Controllers
     {
         public ActionResult SignUp()
         {
+            /*
+            Add membership record
+            Queue activation email sending
+            Queue provisioning 
+            */ 
+
             return RedirectToAction("Complete");
         }
 
