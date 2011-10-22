@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ExcelImportController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -100,6 +101,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Dashboard\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GiveCRM.Admin.Models\GiveCRM.Admin.Models.csproj">
+      <Project>{D00A47FB-4BAC-44C8-B7EF-6A42B268C9A0}</Project>
+      <Name>GiveCRM.Admin.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
