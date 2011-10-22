@@ -10,5 +10,11 @@ namespace GiveCRM.Admin.Web.Controllers
             get { return "givecamp.org"; }
             set { throw new NotImplementedException(); }
         }
+
+        public string ExcelTemplatePath
+        {
+            get { return "/Content/Files/GiveCRM_Template.xls"; }
+            set { throw new NotImplementedException(); }
+        }
     }
 }

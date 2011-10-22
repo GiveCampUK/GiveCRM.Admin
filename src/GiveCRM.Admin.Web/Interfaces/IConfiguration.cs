@@ -3,5 +3,6 @@
     public interface IConfiguration
     {
         string BaseDomain { get; set; }
+        string ExcelTemplatePath { get; set; }
     }
 }

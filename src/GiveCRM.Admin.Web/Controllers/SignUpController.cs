@@ -31,10 +31,14 @@ namespace GiveCRM.Admin.Web.Controllers
 
         public ActionResult Complete()
         {
-            var viewModel = new AdditionalInfo
+            var additionalInfo = new AdditionalInfo
                                 {
-                                    BaseDomain = configuration.BaseDomain,
                                     SubDomain = "mycharity"
+                                };
+            var viewModel = new Complete
+                                {
+                                    AdditionalInfo = additionalInfo,
+                                    Configuration = configuration
                                 };
 
             return View(viewModel);
