@@ -4,18 +4,15 @@
     ViewBag.Title = "GiveCRM - we're setting up your site";
 }
 
-<h2>Thanks, we're setting up your site</h2>
-
-<h3>We'll email you when it's ready</h3>
+<h2>Thanks, we're setting up your site and we'll email you when it's ready</h2>
 
 <div class="row">
     <div class="span16">
-    @using (Html.BeginForm("SignUp", "StoreAdditionalInfo")) {
+        <h4>While you're waiting, we need a little more information:</h4>
+    @using (Html.BeginForm("StoreAdditionalInfo", "SignUp")) {
         <div>
             <fieldset>
-                <legend>While you're waiting, we need a little more information:</legend>
-
-                <div>
+                <div class="clearfix">
                     @Html.LabelFor(m => m.AdditionalInfo.UserName, "Your Name")
                     <div class="input">
                         @Html.TextBoxFor(m => m.AdditionalInfo.UserName)
@@ -23,7 +20,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div class="clearfix">
                     @Html.LabelFor(m => m.AdditionalInfo.RegisteredCharityNumber, "Registered Charity Number")
                     <div class="input">
                         @Html.TextBoxFor(m => m.AdditionalInfo.RegisteredCharityNumber)
@@ -31,18 +28,20 @@
                     </div>
                 </div>
 
-                <div>
+                <div class="clearfix">
                     @Html.LabelFor(m => m.AdditionalInfo.SubDomain, "Your Domain Name")
                     <div class="input">
                         http://
-                        @Html.TextBoxFor(m => m.AdditionalInfo.SubDomain, new { @class = "span2" })
+                        @Html.TextBoxFor(m => m.AdditionalInfo.SubDomain, new { @class = "span3" })
                         @Html.ValidationMessageFor(m => m.AdditionalInfo.SubDomain)
                         @Model.Configuration.BaseDomain
                     </div>
                 </div>
 
-                <div>
-                    <input type="submit" value="Store" class="btn large primary" />
+                <div class="clearfix">
+                    <div class="input">
+                        <input type="submit" value="Store" class="btn large primary" />
+                    </div>
                 </div>
             </fieldset>
         </div>
