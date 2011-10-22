@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using GiveCRM.Admin.Web.ViewModels;
 
@@ -26,7 +23,7 @@ namespace GiveCRM.Admin.Web.Controllers
             if (file.ContentLength <= 0)
             {
                 ViewBag.Error = "The file you uploaded was empty.";
-                return View("Index");
+                return View("Index", new ExcelImportViewModel());
             }
 
             // Process the file

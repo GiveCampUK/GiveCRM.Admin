@@ -2,7 +2,6 @@
 {
     public class ExcelImportViewModel
     {
-        public readonly string ExcelMimeType = "application/vnd.ms-excel";
         public readonly string ExcelTemplatePath = "~/Content/files/GiveCRM_Template.xls";
     }
 }
