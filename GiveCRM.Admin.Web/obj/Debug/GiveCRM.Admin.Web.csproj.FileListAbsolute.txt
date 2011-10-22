@@ -1,0 +1,5 @@
+C:\Users\Robin.Minto\Documents\Visual Studio 2010\Projects\GiveCRM.Admin\GiveCRM.Admin.Web\bin\GiveCRM.Admin.Web.dll
+C:\Users\Robin.Minto\Documents\Visual Studio 2010\Projects\GiveCRM.Admin\GiveCRM.Admin.Web\bin\GiveCRM.Admin.Web.pdb
+C:\Users\Robin.Minto\Documents\Visual Studio 2010\Projects\GiveCRM.Admin\GiveCRM.Admin.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Robin.Minto\Documents\Visual Studio 2010\Projects\GiveCRM.Admin\GiveCRM.Admin.Web\obj\Debug\GiveCRM.Admin.Web.dll
+C:\Users\Robin.Minto\Documents\Visual Studio 2010\Projects\GiveCRM.Admin\GiveCRM.Admin.Web\obj\Debug\GiveCRM.Admin.Web.pdb

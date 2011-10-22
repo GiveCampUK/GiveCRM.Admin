@@ -1,0 +1,5 @@
+<Modules>
+  <Module PersistentId="CD5E8680-1C67-466C-8DB1-9061E7F7B218" ModuleId="GiveCRM.Admin" />
+  <Module PersistentId="D00A47FB-4BAC-44C8-B7EF-6A42B268C9A0" ModuleId="GiveCRM.Admin.Models" />
+  <Module PersistentId="44717560-DC70-47A8-A42D-F139EEAB42E3" ModuleId="GiveCRM.Admin.DataAccess" />
+</Modules>
