@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.Models", "GiveCRM.Admin.Models\GiveCRM.Admin.Models.csproj", "{D00A47FB-4BAC-44C8-B7EF-6A42B268C9A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.DataAccess", "GiveCRM.Admin.DataAccess\GiveCRM.Admin.DataAccess.csproj", "{44717560-DC70-47A8-A42D-F139EEAB42E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.Web", "GiveCRM.Admin.Web\GiveCRM.Admin.Web.csproj", "{50A2C082-28AC-46E5-A9CF-C4CC1456B354}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D00A47FB-4BAC-44C8-B7EF-6A42B268C9A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D00A47FB-4BAC-44C8-B7EF-6A42B268C9A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D00A47FB-4BAC-44C8-B7EF-6A42B268C9A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D00A47FB-4BAC-44C8-B7EF-6A42B268C9A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44717560-DC70-47A8-A42D-F139EEAB42E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44717560-DC70-47A8-A42D-F139EEAB42E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44717560-DC70-47A8-A42D-F139EEAB42E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44717560-DC70-47A8-A42D-F139EEAB42E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50A2C082-28AC-46E5-A9CF-C4CC1456B354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50A2C082-28AC-46E5-A9CF-C4CC1456B354}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50A2C082-28AC-46E5-A9CF-C4CC1456B354}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50A2C082-28AC-46E5-A9CF-C4CC1456B354}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
