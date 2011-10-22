@@ -40,9 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataFormatException.cs" />
+    <Compile Include="ExcelImportService.cs" />
     <Compile Include="IExcelImportService.cs" />
     <Compile Include="ImportDataCompletedEventArgs.cs" />
+    <Compile Include="ImportDataFailedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\GiveCRM_App\src\GiveCRM.ImportExport\GiveCRM.ImportExport\GiveCRM.ImportExport.csproj">
+      <Project>{191D37B7-B50F-45D5-9336-1A700F719617}</Project>
+      <Name>GiveCRM.ImportExport</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

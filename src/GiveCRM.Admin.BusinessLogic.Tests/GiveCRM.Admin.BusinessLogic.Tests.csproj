@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D2D6B6C8-6EBA-4EA4-8B38-96287566BBED}</ProjectGuid>
+    <ProjectGuid>{7D5CFBB4-3674-4A47-8C60-7E127B113696}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GiveCRM.Admin.Web.Tests</RootNamespace>
-    <AssemblyName>GiveCRM.Admin.Web.Tests</AssemblyName>
+    <RootNamespace>GiveCRM.Admin.BusinessLogic.Tests</RootNamespace>
+    <AssemblyName>GiveCRM.Admin.BusinessLogic.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,8 +45,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,20 +52,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExcelImportController_Upload_Should.cs" />
+    <Compile Include="ExcelImportService_Import_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\GiveCRM_App\src\GiveCRM.ImportExport\GiveCRM.ImportExport\GiveCRM.ImportExport.csproj">
+      <Project>{191D37B7-B50F-45D5-9336-1A700F719617}</Project>
+      <Name>GiveCRM.ImportExport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GiveCRM.Admin.BusinessLogic\GiveCRM.Admin.BusinessLogic.csproj">
       <Project>{6442A87F-51D2-4694-B712-61D4512B162A}</Project>
       <Name>GiveCRM.Admin.BusinessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GiveCRM.Admin.Web\GiveCRM.Admin.Web.csproj">
-      <Project>{50A2C082-28AC-46E5-A9CF-C4CC1456B354}</Project>
-      <Name>GiveCRM.Admin.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

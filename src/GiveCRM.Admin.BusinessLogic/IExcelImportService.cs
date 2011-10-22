@@ -6,6 +6,7 @@ namespace GiveCRM.Admin.BusinessLogic
     public interface IExcelImportService
     {
         event Action<object, ImportDataCompletedEventArgs> ImportCompleted;
-        void ImportAsync(Stream file);
+        event Action<object, ImportDataFailedEventArgs> ImportFailed;
+        void ImportAsync(Stream file, Action callback = null);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Web;
+using GiveCRM.Admin.BusinessLogic;
 using GiveCRM.Admin.Web.Controllers;
 using GiveCRM.Admin.Web.Interfaces;
-using GiveCRM.ImportExport;
 using Moq;
 using NUnit.Framework;
 using System.Web.Mvc;
@@ -22,9 +22,8 @@ namespace GiveCRM.Admin.Web.Tests
         [SetUp]
         public void SetUp()
         {
-            var fileSystem = new Mock<IFileSystemWrapper>();
-            var excelImporter = new Mock<IExcelImport>();
-            controller = new ExcelImportController(excelImporter.Object, fileSystem.Object);
+            var excelImporter = new Mock<IExcelImportService>();
+            controller = new ExcelImportController(excelImporter.Object);
         }
 
         [Test]

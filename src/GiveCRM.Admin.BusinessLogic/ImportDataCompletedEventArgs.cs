@@ -5,6 +5,6 @@ namespace GiveCRM.Admin.BusinessLogic
 {
     public class ImportDataCompletedEventArgs : EventArgs
     {
-        public IEnumerable<IEnumerable<string>> ImportedData { get; set; }
+        public IEnumerable<IDictionary<string, object>> ImportedData { get; set; }
     }
 }
