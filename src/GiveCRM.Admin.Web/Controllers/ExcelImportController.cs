@@ -1,14 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using GiveCRM.Admin.BusinessLogic;
 using GiveCRM.Admin.Web.ViewModels;
 
 namespace GiveCRM.Admin.Web.Controllers
 {
-    public class ExcelImportController : Controller
+    public class ExcelImportController : AsyncController
     {
+        private const string ExcelFileExtension_OldFormat = ".xls";
+        private const string ExcelFileExtension_NewFormat = ".xlsx";
+
+        private readonly IExcelImportService excelImporter;
+        
+        public ExcelImportController(IExcelImportService excelImporter)
+        {
+            if (excelImporter == null)
+            {
+                throw new ArgumentNullException("excelImporter");
+            }
+
+            if (excelImporter == null)
+            {
+                throw new ArgumentNullException("excelImporter");
+            }
+
+            this.excelImporter = excelImporter;
+        }
+
         public ActionResult Index()
         {
            return View(new ExcelImportViewModel());
@@ -19,19 +39,46 @@ namespace GiveCRM.Admin.Web.Controllers
         {
             if (file == null)
             {
-                ViewBag.Error = "You did not select a file for upload.";
-                return View("Index", new ExcelImportViewModel());
+                return ErrorView("You did not select a file for upload.");
             }
-            
+
             if (file.ContentLength <= 0)
             {
-                ViewBag.Error = "The file you uploaded was empty.";
-                return View("Index");
+                return ErrorView("The file you uploaded was empty.");
+            }
+
+            if (!IsValidFileExtension(file.FileName))
+            {
+                return ErrorView("The file you uploaded does not appear to be an Excel file.");
             }
 
             // Process the file
+            BeginImportAsync(file.InputStream);
 
             return RedirectToAction("Index", "Dashboard");
+        }
+
+        private ActionResult ErrorView(string message)
+        {
+            ViewBag.Error = message;
+            return View("Index", new ExcelImportViewModel());
+        }
+
+        private bool IsValidFileExtension(string fileName)
+        {
+            return fileName.EndsWith(ExcelFileExtension_OldFormat) || fileName.EndsWith(ExcelFileExtension_NewFormat);
+        }
+
+        private void BeginImportAsync(Stream file)
+        {
+            AsyncManager.OutstandingOperations.Increment();
+            excelImporter.ImportCompleted += (s, e) =>
+                                                 {
+                                                     AsyncManager.Parameters["members"] = e.ImportedData;
+                                                     AsyncManager.OutstandingOperations.Decrement();
+                                                 };
+
+            excelImporter.ImportAsync(file);
         }
     }
 }

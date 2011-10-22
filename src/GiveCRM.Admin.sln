@@ -12,7 +12,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.Models.Test", "GiveCRM.Admin.Models.Test\GiveCRM.Admin.Models.Test.csproj", "{CC9452D6-1BFC-45BA-96CD-3BB3E7CF9FBE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.DataAccess.Test", "GiveCRM.Admin.DataAccess.Test\GiveCRM.Admin.DataAccess.Test.csproj", "{F9EB7CBA-5A08-4187-86A8-5E4232530E32}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.Web.Tests", "GiveCRM.Admin.Web.Tests\GiveCRM.Admin.Web.Tests.csproj", "{D2D6B6C8-6EBA-4EA4-8B38-96287566BBED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.ImportExport", "..\GiveCRM_App\src\GiveCRM.ImportExport\GiveCRM.ImportExport\GiveCRM.ImportExport.csproj", "{191D37B7-B50F-45D5-9336-1A700F719617}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.BusinessLogic", "GiveCRM.Admin.BusinessLogic\GiveCRM.Admin.BusinessLogic.csproj", "{6442A87F-51D2-4694-B712-61D4512B162A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.BusinessLogic.Tests", "GiveCRM.Admin.BusinessLogic.Tests\GiveCRM.Admin.BusinessLogic.Tests.csproj", "{7D5CFBB4-3674-4A47-8C60-7E127B113696}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +57,18 @@ Global
 		{D2D6B6C8-6EBA-4EA4-8B38-96287566BBED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2D6B6C8-6EBA-4EA4-8B38-96287566BBED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2D6B6C8-6EBA-4EA4-8B38-96287566BBED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{191D37B7-B50F-45D5-9336-1A700F719617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{191D37B7-B50F-45D5-9336-1A700F719617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{191D37B7-B50F-45D5-9336-1A700F719617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{191D37B7-B50F-45D5-9336-1A700F719617}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6442A87F-51D2-4694-B712-61D4512B162A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6442A87F-51D2-4694-B712-61D4512B162A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6442A87F-51D2-4694-B712-61D4512B162A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6442A87F-51D2-4694-B712-61D4512B162A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D5CFBB4-3674-4A47-8C60-7E127B113696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D5CFBB4-3674-4A47-8C60-7E127B113696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D5CFBB4-3674-4A47-8C60-7E127B113696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D5CFBB4-3674-4A47-8C60-7E127B113696}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
