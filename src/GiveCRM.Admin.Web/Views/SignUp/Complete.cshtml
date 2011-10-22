@@ -1,0 +1,51 @@
+﻿@model GiveCRM.Admin.Web.ViewModels.SignUp.AdditionalInfo
+
+@{
+    ViewBag.Title = "GiveCRM - we're setting up your site";
+}
+
+<h2>Thanks, we're setting up your site</h2>
+
+<h3>We'll email you when it's ready</h3>
+
+<div class="row">
+    <div class="span16">
+    @using (Html.BeginForm("SignUp", "StoreAdditionalInfo")) {
+        <div>
+            <fieldset>
+                <legend>While you're waiting, we need a little more information:</legend>
+
+                <div>
+                    @Html.LabelFor(m => m.UserName, "Your Name")
+                    <div class="input">
+                        @Html.TextBoxFor(m => m.UserName)
+                        @Html.ValidationMessageFor(m => m.UserName)
+                    </div>
+                </div>
+
+                <div>
+                    @Html.LabelFor(m => m.RegisteredCharityNumber, "Registered Charity Number")
+                    <div class="input">
+                        @Html.TextBoxFor(m => m.RegisteredCharityNumber)
+                        @Html.ValidationMessageFor(m => m.RegisteredCharityNumber)
+                    </div>
+                </div>
+
+                <div>
+                    @Html.LabelFor(m => m.SubDomain, "Your Domain Name")
+                    <div class="input">
+                        http://
+                        @Html.TextBoxFor(m => m.SubDomain, new { @class = "span2" } )
+                        @Html.ValidationMessageFor(m => m.SubDomain)
+                        @Model.BaseDomain
+                    </div>
+                </div>
+
+                <div>
+                    <input type="submit" value="Store" class="btn large primary" />
+                </div>
+            </fieldset>
+        </div>
+    }
+    </div>
+</div>
