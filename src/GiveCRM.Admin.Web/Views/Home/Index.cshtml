@@ -1,7 +1,7 @@
 ﻿@model GiveCRM.Admin.Models.SignUp
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GiveCRM";
 }
 
     <div class="row">
@@ -13,7 +13,7 @@
         </ul>
       </div>
       <div class="span6">
-        @using (Html.BeginForm()) {
+        @using (Html.BeginForm("SignUp", "SignUp")) {
             <div>
                 <fieldset>
                     <legend>Sign Up</legend>
