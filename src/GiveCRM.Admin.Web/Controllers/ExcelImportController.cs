@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
@@ -13,23 +14,21 @@ namespace GiveCRM.Admin.Web.Controllers
         private const string ExcelFileExtension_OldFormat = ".xls";
         private const string ExcelFileExtension_NewFormat = ".xlsx";
 
-        private IFileSystemWrapper fileSystemWrapper;
-        private IExcelImport excelImporter;
-
-        public ExcelImportController(IExcelImport excelImporter, IFileSystemWrapper fileSystemWrapper)
+        private readonly IExcelImportService excelImporter;
+        
+        public ExcelImportController(IExcelImportService excelImporter)
         {
             if (excelImporter == null)
             {
                 throw new ArgumentNullException("excelImporter");
             }
 
-            if (fileSystemWrapper == null)
+            if (excelImporter == null)
             {
-                throw new ArgumentNullException("fileSystemWrapper");
+                throw new ArgumentNullException("excelImporter");
             }
 
             this.excelImporter = excelImporter;
-            this.fileSystemWrapper = fileSystemWrapper;
         }
 
         public ActionResult Index()
@@ -56,7 +55,7 @@ namespace GiveCRM.Admin.Web.Controllers
             }
 
             // Process the file
-            BeginImportAsync(file.FileName);
+            BeginImportAsync(file.InputStream);
 
             return RedirectToAction("Index", "Dashboard");
         }
@@ -72,14 +71,16 @@ namespace GiveCRM.Admin.Web.Controllers
             return fileName.EndsWith(ExcelFileExtension_OldFormat) || fileName.EndsWith(ExcelFileExtension_NewFormat);
         }
 
-        private void BeginImportAsync(string fileName)
+        private void BeginImportAsync(Stream file)
         {
             AsyncManager.OutstandingOperations.Increment();
+            excelImporter.ImportCompleted += (s, e) =>
+                                                 {
+                                                     AsyncManager.Parameters["members"] = e.ImportedData;
+                                                     AsyncManager.OutstandingOperations.Decrement();
+                                                 };
 
-            Stream fileStream = fileSystemWrapper.Open(fileName, FileMode.Open, FileAccess.Read);
-            
-            excelImporter.Open(fileStream, ExcelFileType.XLS, true);
-            excelImporter.GetRowsAsKeyValuePairs(0); //Simple.Data
+            excelImporter.ImportAsync(file);
         }
     }
 }
