@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using GiveCRM.ImportExport;
+using Simple.Data;
 
 namespace GiveCRM.Admin.BusinessLogic
 {
@@ -42,6 +43,10 @@ namespace GiveCRM.Admin.BusinessLogic
 
             // Hard-coded for now
             IEnumerable<IDictionary<string, object>> rowsAsKeyValuePairs = importer.GetRowsAsKeyValuePairs(0);
+
+            var db = Database.OpenConnection(""); // TODO
+
+            db.Members.Insert(rowsAsKeyValuePairs);
 
             if (callback != null)
             {
