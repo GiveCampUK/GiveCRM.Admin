@@ -44,10 +44,11 @@ namespace GiveCRM.Admin.Web.Controllers
             var subDomain = GetSubDomainFromCharityName(requiredInfoViewModel.CharityName);
             var activationToken = TokenHelper.CreateRandomIdentifier();
 
-            var registrationInfo = new RegistrationInfo();
-            Mapper.DynamicMap(requiredInfoViewModel, registrationInfo);
             //TODO subDomain should be stored to database
             Session[activationToken.AsQueryString()] = subDomain;
+
+            var registrationInfo = new RegistrationInfo();
+            Mapper.DynamicMap(requiredInfoViewModel, registrationInfo);
 
             var result = _charityMembershipService.RegisterUserAndCharity(registrationInfo);
 

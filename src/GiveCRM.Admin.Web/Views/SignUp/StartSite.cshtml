@@ -1,5 +1,14 @@
-﻿@{
+﻿@model GiveCRM.Admin.Web.ViewModels.SignUp.StartSiteViewModel
+
+@{
     ViewBag.Title = "StartSite";
 }
 
-<h2>StartSite</h2>
+<h1>Your giveCRM site has been activated</h1>
+ 
+<h3>Your site is located at:
+<a href="//@Model.Url">@(Model.SubDomain).GiveCRM.org</a>.</h3>
+ 
+<h4>To get started you may want to <a href="/ExcelImport">Import your membership information</a>.</h4>
+ 
+<h4>Otherwise, lets <a href="//@Model.Url">go to your new CRM</a>.</h4>
