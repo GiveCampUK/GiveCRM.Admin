@@ -83,5 +83,10 @@ namespace GiveCRM.Admin.Web.Controllers
 
             return View("Complete", viewModel);
         }
+
+        public ActionResult StartSite(string activationToken)
+        {
+            return View();
+        }
     }
 }
