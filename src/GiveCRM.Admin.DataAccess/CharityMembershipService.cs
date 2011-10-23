@@ -25,28 +25,32 @@ namespace GiveCRM.Admin.DataAccess
                 RegisteredCharityNumber = registrationInfo.CharityName,
                 SubDomain = registrationInfo.SubDomain
             };
-            var newCharity = CharitiesDataAccess.Insert(charity);
-            if (newCharity == null) throw new ArgumentNullException("newCharity");
-
-
-            // Attempt to register the user
-            MembershipCreateStatus createStatus;
-            Membership.CreateUser(registrationInfo.UserIdentifier, registrationInfo.Password, registrationInfo.UserIdentifier, null, null, true, null, out createStatus);
-            var user = Membership.GetUser(registrationInfo.UserIdentifier);
-            if (user == null) throw new ArgumentNullException("user");
-
-            var charityMembership = new CharityMembership
+            using (var scope = new TransactionScope())
             {
-                CharityId = newCharity.Id,
-                UserName = user.UserName
-            };
-            var newCharityMembership = CharitiesMembershipsDataAccess.Insert(charityMembership);
+                var newCharity = CharitiesDataAccess.Insert(charity);
+                if (newCharity == null) throw new ArgumentNullException("newCharity");
 
-            if (createStatus == MembershipCreateStatus.Success && newCharityMembership != null)
-            {
-                result = true;
+
+                // Attempt to register the user
+                MembershipCreateStatus createStatus;
+                Membership.CreateUser(registrationInfo.UserIdentifier, registrationInfo.Password, registrationInfo.UserIdentifier, null, null, true, null, out createStatus);
+                var user = Membership.GetUser(registrationInfo.UserIdentifier);
+                if (user == null) throw new ArgumentNullException("user");
+
+                var charityMembership = new CharityMembership
+                {
+                    CharityId = newCharity.Id,
+                    UserName = user.UserName
+                };
+                var newCharityMembership = CharitiesMembershipsDataAccess.Insert(charityMembership);
+
+                if (createStatus == MembershipCreateStatus.Success && newCharityMembership != null)
+                {
+                    result = true;
+                    scope.Complete();
+                }
+                
             }
-
             return result;
         }
     }

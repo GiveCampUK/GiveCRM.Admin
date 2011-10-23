@@ -71,33 +71,6 @@ namespace GiveCRM.Admin.Web.Controllers
             return View();
         }
 
-        //public ActionResult SignIn()
-        //{
-        //    return PartialView("SignInForm");
-        //}
-
-        //[HttpPost]
-        //public ActionResult SignIn(SignIn signIn, string returnUrl)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (Membership.ValidateUser(signIn.UserIdentifier, signIn.Password))
-        //        {
-        //            FormsAuthentication.SetAuthCookie(signIn.UserIdentifier, false);
-        //            if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-        //                && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-        //            {
-        //                return Redirect(returnUrl);
-        //            }
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        ModelState.AddModelError("", "The user name or password provided is incorrect.");
-        //    }
-
-        //    // If we got this far, something failed, redisplay form
-        //    return PartialView("SignInForm", signIn);
-        //}
-
         [HttpGet]
         public ActionResult Complete()
         {
