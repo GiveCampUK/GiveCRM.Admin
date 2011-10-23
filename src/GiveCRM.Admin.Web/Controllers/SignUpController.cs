@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using AutoMapper;
 using GiveCRM.Admin.DataAccess;
@@ -19,7 +18,6 @@ namespace GiveCRM.Admin.Web.Controllers
         private readonly ISignUpQueueingService signUpQueueingService;
         private readonly ICharityMembershipService _charityMembershipService;
 
-
         public SignUpController(IConfiguration configuration, ISignUpQueueingService signUpQueueingService, ICharityMembershipService charityMembershipService)
         {
             this.configuration = configuration;
@@ -34,14 +32,14 @@ namespace GiveCRM.Admin.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignUp(RequiredInfo requiredInfo)
+        public ActionResult SignUp(RequiredInfoViewModel requiredInfoViewModel)
         {
             if (!ModelState.IsValid)
             {
-                return View(requiredInfo);
+                return View(requiredInfoViewModel);
             }
 
-            var subDomain = GetSubDomainFromCharityName(requiredInfo.CharityName);
+            var subDomain = GetSubDomainFromCharityName(requiredInfoViewModel.CharityName);
             var activationToken = TokenHelper.CreateRandomIdentifier();
 
             var registrationInfo = new RegistrationInfo();
@@ -74,7 +72,7 @@ namespace GiveCRM.Admin.Web.Controllers
         {
             var subDomain = TempData["SubDomain"] as string;
 
-            var viewModel = new Complete
+            var viewModel = new CompleteViewModel
                                 {
                                     SubDomain = subDomain
                                 }.WithConfig(configuration);
@@ -89,9 +87,9 @@ namespace GiveCRM.Admin.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult StoreAdditionalInfo(Complete complete)
+        public ActionResult StoreAdditionalInfo(CompleteViewModel completeViewModel)
         {
-            var viewModel = complete.WithConfig(configuration);
+            var viewModel = completeViewModel.WithConfig(configuration);
 
             if (!ModelState.IsValid)
             {

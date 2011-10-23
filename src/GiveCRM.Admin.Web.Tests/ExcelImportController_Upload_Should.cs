@@ -1,7 +1,8 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using GiveCRM.Admin.BusinessLogic;
 using GiveCRM.Admin.Web.Controllers;
-using GiveCRM.Admin.Web.Interfaces;
 using Moq;
 using NUnit.Framework;
 using System.Web.Mvc;
@@ -29,14 +30,14 @@ namespace GiveCRM.Admin.Web.Tests
         [Test]
         public void ReturnToIndexView_WhenNoFileIsSelectedForUpload()
         {
-            var result = controller.Upload(null) as ViewResult;
+            var result = controller.ImportAsync(null) as ViewResult;
             Assert.AreEqual(IndexActionName, result.ViewName);
         }
 
         [Test]
         public void DisplayAnErrorMesage_WhenNoFileIsUploaded()
         {
-            var result = controller.Upload(null) as ViewResult;
+            var result = controller.ImportAsync(null) as ViewResult;
             Assert.IsNotNull(result.ViewBag.Error);
         }
 
@@ -46,7 +47,7 @@ namespace GiveCRM.Admin.Web.Tests
             var file = new Mock<HttpPostedFileBase>();
             file.Setup(f => f.ContentLength).Returns(ZeroFileLength);
 
-            var result = controller.Upload(file.Object) as ViewResult;
+            var result = controller.ImportAsync(file.Object) as ViewResult;
 
             Assert.AreEqual(IndexActionName, result.ViewName);
         }
@@ -57,7 +58,7 @@ namespace GiveCRM.Admin.Web.Tests
             var file = new Mock<HttpPostedFileBase>();
             file.Setup(f => f.ContentLength).Returns(ZeroFileLength);
 
-            var result = controller.Upload(file.Object) as ViewResult;
+            var result = controller.ImportAsync(file.Object) as ViewResult;
 
             Assert.IsNotNull(result.ViewBag.Error);
         }
@@ -69,7 +70,7 @@ namespace GiveCRM.Admin.Web.Tests
             file.Setup(f => f.ContentLength).Returns(NonZeroFileLength);
             file.Setup(f => f.FileName).Returns("A Text File.txt");
 
-            var result = controller.Upload(file.Object) as ViewResult;
+            var result = controller.ImportAsync(file.Object) as ViewResult;
 
             Assert.AreEqual(IndexActionName, result.ViewName);
         }
@@ -81,7 +82,7 @@ namespace GiveCRM.Admin.Web.Tests
             file.Setup(f => f.ContentLength).Returns(NonZeroFileLength);
             file.Setup(f => f.FileName).Returns("A Text File.txt");
 
-            var result = controller.Upload(file.Object) as ViewResult;
+            var result = controller.ImportAsync(file.Object) as ViewResult;
 
             Assert.IsNotNull(result.ViewBag.Error);
         }
@@ -93,7 +94,7 @@ namespace GiveCRM.Admin.Web.Tests
             file.Setup(f => f.ContentLength).Returns(NonZeroFileLength);
             file.Setup(f => f.FileName).Returns("An old-format Excel file.xls");
 
-            var result = controller.Upload(file.Object);
+            var result = controller.ImportAsync(file.Object);
 
             Assert.IsNotInstanceOf<ViewResult>(result);
         }
@@ -105,7 +106,7 @@ namespace GiveCRM.Admin.Web.Tests
             file.Setup(f => f.ContentLength).Returns(NonZeroFileLength);
             file.Setup(f => f.FileName).Returns("A new-format Excel file.xlsx");
 
-            var result = controller.Upload(file.Object);
+            var result = controller.ImportAsync(file.Object);
 
             Assert.IsNotInstanceOf<ViewResult>(result);
         }
@@ -117,7 +118,16 @@ namespace GiveCRM.Admin.Web.Tests
             file.Setup(f => f.ContentLength).Returns(NonZeroFileLength);
             file.Setup(f => f.FileName).Returns("Valid file.xls");
 
-            var result = controller.Upload(file.Object) as RedirectToRouteResult;
+            var result = controller.ImportAsync(file.Object) as RedirectToRouteResult;
+
+            Assert.AreEqual(DashboardControllerName, result.RouteValues["controller"]);
+            Assert.AreEqual(IndexActionName, result.RouteValues["action"]);
+        }
+
+        [Test]
+        public void RedirectToDashboardIndex_WhenFileImportIsComplete()
+        {
+            var result = controller.ImportCompleted(Enumerable.Empty<IDictionary<string, object>>()) as RedirectToRouteResult;
 
             Assert.AreEqual(DashboardControllerName, result.RouteValues["controller"]);
             Assert.AreEqual(IndexActionName, result.RouteValues["action"]);

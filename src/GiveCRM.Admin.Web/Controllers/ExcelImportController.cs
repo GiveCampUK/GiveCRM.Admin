@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
@@ -35,7 +36,7 @@ namespace GiveCRM.Admin.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Upload(HttpPostedFileBase file)
+        public ActionResult ImportAsync(HttpPostedFileBase file)
         {
             if (file == null)
             {
@@ -53,8 +54,8 @@ namespace GiveCRM.Admin.Web.Controllers
             }
 
             // Process the file
-            BeginImportAsync(file.InputStream);
-
+            ImportAsync(file.InputStream);
+            
             return RedirectToAction("Index", "Dashboard");
         }
 
@@ -69,16 +70,27 @@ namespace GiveCRM.Admin.Web.Controllers
             return fileName.EndsWith(ExcelFileExtension_OldFormat) || fileName.EndsWith(ExcelFileExtension_NewFormat);
         }
 
-        private void BeginImportAsync(Stream file)
+        private void ImportAsync(Stream file)
         {
             AsyncManager.OutstandingOperations.Increment();
             excelImporter.ImportCompleted += (s, e) =>
-                                                 {
-                                                     AsyncManager.Parameters["members"] = e.ImportedData;
-                                                     AsyncManager.OutstandingOperations.Decrement();
-                                                 };
+            {
+                AsyncManager.Parameters["members"] = e.ImportedData;
+                AsyncManager.OutstandingOperations.Decrement();
+            };
 
-            excelImporter.ImportAsync(file);
+            excelImporter.ImportFailed += (s, e) =>
+            {
+                AsyncManager.Parameters["exception"] = e.Exception;
+                AsyncManager.OutstandingOperations.Decrement();
+            };
+
+            excelImporter.Import(file);
+        }
+
+        public ActionResult ImportCompleted(IEnumerable<IDictionary<string, object>> data)
+        {
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }

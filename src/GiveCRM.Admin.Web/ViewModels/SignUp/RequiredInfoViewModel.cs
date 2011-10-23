@@ -2,7 +2,7 @@
 
 namespace GiveCRM.Admin.Web.ViewModels.SignUp
 {
-    public class RequiredInfo
+    public class RequiredInfoViewModel
     {
         [Required(ErrorMessage = "Please enter your email address")]
         [Display(Name = "Email Address")]

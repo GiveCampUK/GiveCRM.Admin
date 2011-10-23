@@ -1,4 +1,4 @@
-﻿@model GiveCRM.Admin.Web.ViewModels.SignUp.RequiredInfo
+﻿@model GiveCRM.Admin.Web.ViewModels.SignUp.RequiredInfoViewModel
 
 @using (Html.BeginForm("SignUp", "SignUp")) {
     <div>
@@ -16,7 +16,7 @@
             <div class="clearfix">
                 @Html.LabelFor(m => m.Password)
                 <div class="input">
-                    @Html.TextBoxFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { value = Model != null ? Model.Password : "" })
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
             </div>

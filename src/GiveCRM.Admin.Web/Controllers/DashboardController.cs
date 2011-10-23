@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using GiveCRM.Models;
+using Simple.Data;
 
 namespace GiveCRM.Admin.Web.Controllers
 {
     public class DashboardController : Controller
     {
+        private readonly dynamic db = Database.OpenNamedConnection("GiveCRM");
+
         //
         // GET: /Dashboard/
 
         public ActionResult Index()
         {
-            return View();
+            var allMembers = db.Members.All().Cast<Member>();
+
+            return View(allMembers);
         }
 
     }
