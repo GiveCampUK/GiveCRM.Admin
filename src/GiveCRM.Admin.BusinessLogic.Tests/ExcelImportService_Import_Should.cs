@@ -11,25 +11,7 @@ namespace GiveCRM.Admin.BusinessLogic.Tests
     public class ExcelImportService_Import_Should
     {
         [Test]
-        public void ReturnAnEnumerableListOfResults()
-        {
-            var dataToImport = new List<IDictionary<string, object>>
-                           {
-                               new Dictionary<string, object>
-                                   {
-                                       {"FirstName", "Joe"},
-                                       {"LastName", "Bloggs"}
-                                   }
-                           };
-            ExcelImportService importer = SetupImportService(dataToImport);
-            var inputStream = new Mock<Stream>();
-            
-            importer.Import(inputStream.Object);
-
-            //CollectionAssert.AreEqual(dataToImport);
-        }
-
-        [Test]
+        [Ignore("The Importer code is in the wrong place - it should be in the main app.")]
         public void FiresImportCompletedWhenEverythingsFine()
         {
             var dataToImport = new List<IDictionary<string, object>>
@@ -50,6 +32,7 @@ namespace GiveCRM.Admin.BusinessLogic.Tests
         }
 
         [Test]
+        [Ignore("The Importer code is in the wrong place - it should be in the main app.")]
         public void FiresImportFailedWhenSomethingGoesWrong()
         {
             bool eventFired = false;
