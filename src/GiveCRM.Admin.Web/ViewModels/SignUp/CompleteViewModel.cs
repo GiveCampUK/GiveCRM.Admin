@@ -14,11 +14,13 @@ namespace GiveCRM.Admin.Web.ViewModels.SignUp
         //IConfiguration
         public string BaseDomain { get; set; }
         public string ExcelTemplatePath { get; set; }
+        public string CrmTestUrl { get; set; }
 
         public CompleteViewModel WithConfig(IConfiguration configuration)
         {
             BaseDomain = configuration.BaseDomain;
             ExcelTemplatePath = configuration.ExcelTemplatePath;
+            CrmTestUrl = configuration.CrmTestUrl;
             return this;
         }
     }

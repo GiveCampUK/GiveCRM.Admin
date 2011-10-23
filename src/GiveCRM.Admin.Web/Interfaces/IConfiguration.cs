@@ -4,5 +4,6 @@
     {
         string BaseDomain { get; set; }
         string ExcelTemplatePath { get; set; }
+        string CrmTestUrl { get; set; }
     }
 }

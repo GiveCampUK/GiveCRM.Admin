@@ -17,5 +17,11 @@ namespace GiveCRM.Admin.Web.Controllers
             get { return ConfigurationManager.AppSettings["ExcelTemplatePath"]; }
             set { throw new NotImplementedException(); }
         }
+
+        public string CrmTestUrl
+        {
+            get { return ConfigurationManager.AppSettings["CrmTestUrl"]; }
+            set { throw new NotImplementedException(); }
+        }
     }
 }
