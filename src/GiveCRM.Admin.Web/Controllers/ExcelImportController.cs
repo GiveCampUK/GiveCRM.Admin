@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
@@ -53,7 +54,7 @@ namespace GiveCRM.Admin.Web.Controllers
             }
 
             // Process the file
-            BeginImportAsync(file.InputStream);
+            ImportAsync(file.InputStream);
 
             return RedirectToAction("Index", "Dashboard");
         }
@@ -69,7 +70,7 @@ namespace GiveCRM.Admin.Web.Controllers
             return fileName.EndsWith(ExcelFileExtension_OldFormat) || fileName.EndsWith(ExcelFileExtension_NewFormat);
         }
 
-        private void BeginImportAsync(Stream file)
+        private void ImportAsync(Stream file)
         {
             AsyncManager.OutstandingOperations.Increment();
             excelImporter.ImportCompleted += (s, e) =>
@@ -79,6 +80,11 @@ namespace GiveCRM.Admin.Web.Controllers
                                                  };
 
             excelImporter.ImportAsync(file);
+        }
+
+        public ActionResult ImportCompleted(IEnumerable<IDictionary<string, object>> data)
+        {
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }

@@ -7,6 +7,6 @@ namespace GiveCRM.Admin.BusinessLogic
     {
         event Action<object, ImportDataCompletedEventArgs> ImportCompleted;
         event Action<object, ImportDataFailedEventArgs> ImportFailed;
-        void ImportAsync(Stream file, Action callback = null);
+        void ImportAsync(Stream file);
     }
 }
