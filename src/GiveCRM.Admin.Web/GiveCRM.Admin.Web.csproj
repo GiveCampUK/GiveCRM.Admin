@@ -124,6 +124,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\excel.png" />
     <Content Include="Content\images\GiveCRM-email-header.png" />
+    <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap-alerts.js" />
     <Content Include="Scripts\bootstrap-dropdown.js" />
@@ -157,6 +158,8 @@
     <Content Include="Views\Emails\SignUp.Text.cshtml" />
     <Content Include="Views\Emails\SignUp.Html.cshtml" />
     <Content Include="Views\SignUp\StartSite.cshtml" />
+    <Content Include="Views\Shared\_GlobFooter.cshtml" />
+    <Content Include="Views\Shared\_GlobHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

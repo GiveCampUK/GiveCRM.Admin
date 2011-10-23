@@ -1,0 +1,12 @@
+﻿body {
+	padding-top: 40px;
+}
+
+#main {
+	padding-top: 1em;
+}
+
+
+.itemlist > li {
+	margin-bottom: 1em;
+}
