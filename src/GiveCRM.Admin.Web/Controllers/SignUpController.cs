@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using GiveCRM.Admin.Web.Extensions;
 using GiveCRM.Admin.Web.Helpers;
@@ -35,6 +36,10 @@ namespace GiveCRM.Admin.Web.Controllers
 
             var subDomain = GetSubDomainFromCharityName(requiredInfoViewModel.CharityName);
             var activationToken = TokenHelper.CreateRandomIdentifier();
+
+            //TODO subDomain should be stored to database
+            Session[activationToken.AsQueryString()] = subDomain;
+
             /*
             Add membership record inc. domain information
             */
@@ -84,9 +89,24 @@ namespace GiveCRM.Admin.Web.Controllers
             return View("Complete", viewModel);
         }
 
-        public ActionResult StartSite(string activationToken)
+        public ActionResult StartSite(string id)
         {
-            return View();
+            var subDomain = GetSubDomainFromActivationToken(id);
+
+            var viewModel = new StartSiteViewModel
+                                {
+                                    Url = configuration.CrmTestUrl,
+                                    SubDomain = subDomain
+                                };
+
+            return View(viewModel);
+        }
+
+        private string GetSubDomainFromActivationToken(string activationToken)
+        {
+            //TODO get this from database
+            var token = Session[activationToken];
+            return token == null ? "" : token.ToString();
         }
     }
 }
