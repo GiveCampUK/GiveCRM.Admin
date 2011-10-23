@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using GiveCRM.Admin.BusinessLogic;
 using GiveCRM.Admin.Web.Controllers;
 using Moq;
@@ -117,6 +119,15 @@ namespace GiveCRM.Admin.Web.Tests
             file.Setup(f => f.FileName).Returns("Valid file.xls");
 
             var result = controller.ImportAsync(file.Object) as RedirectToRouteResult;
+
+            Assert.AreEqual(DashboardControllerName, result.RouteValues["controller"]);
+            Assert.AreEqual(IndexActionName, result.RouteValues["action"]);
+        }
+
+        [Test]
+        public void RedirectToDashboardIndex_WhenFileImportIsComplete()
+        {
+            var result = controller.ImportCompleted(Enumerable.Empty<IDictionary<string, object>>()) as RedirectToRouteResult;
 
             Assert.AreEqual(DashboardControllerName, result.RouteValues["controller"]);
             Assert.AreEqual(IndexActionName, result.RouteValues["action"]);
