@@ -4,22 +4,25 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+        <!-- Facebook sharing information tags -->
+        <meta property="og:title" content="*|MC:SUBJECT|*" />
+        
         <title>*|MC:SUBJECT|*</title>
 		<style type="text/css">
 			/* Client-specific Styles */
 			#outlook a{padding:0;} /* Force Outlook to provide a "view in browser" button. */
 			body{width:100% !important;} .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
 			body{-webkit-text-size-adjust:none;} /* Prevent Webkit platforms from changing default text sizes. */
-			
+
 			/* Reset Styles */
 			body{margin:0; padding:0;}
 			img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
 			table td{border-collapse:collapse;}
 			#backgroundTable{height:100% !important; margin:0; padding:0; width:100% !important;}
-			
-			
+
 			/* Template Styles */
-			
+
 			/* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: COMMON PAGE ELEMENTS /\/\/\/\/\/\/\/\/\/\ */
 
 			/**
@@ -31,16 +34,16 @@
 			body, #backgroundTable{
 				/*@@editable*/ background-color:#FAFAFA;
 			}
-			
+
 			/**
 			* @@tab Page
 			* @@section email border
 			* @@tip Set the border for your email.
 			*/
 			#templateContainer{
-				/*@@editable*/ border:0;
+				/*@@editable*/ border: 1px solid #DDDDDD;
 			}
-			
+
 			/**
 			* @@tab Page
 			* @@section heading 1
@@ -51,12 +54,12 @@
 				/*@@editable*/ color:#202020;
 				display:block;
 				/*@@editable*/ font-family:Arial;
-				/*@@editable*/ font-size:40px;
+				/*@@editable*/ font-size:34px;
 				/*@@editable*/ font-weight:bold;
 				/*@@editable*/ line-height:100%;
-				margin-top:2%;
+				margin-top:0;
 				margin-right:0;
-				margin-bottom:1%;
+				margin-bottom:10px;
 				margin-left:0;
 				/*@@editable*/ text-align:left;
 			}
@@ -68,15 +71,15 @@
 			* @@style heading 2
 			*/
 			h2, .h2{
-				/*@@editable*/ color:#404040;
+				/*@@editable*/ color:#202020;
 				display:block;
 				/*@@editable*/ font-family:Arial;
-				/*@@editable*/ font-size:18px;
+				/*@@editable*/ font-size:30px;
 				/*@@editable*/ font-weight:bold;
 				/*@@editable*/ line-height:100%;
-				margin-top:2%;
+				margin-top:0;
 				margin-right:0;
-				margin-bottom:1%;
+				margin-bottom:10px;
 				margin-left:0;
 				/*@@editable*/ text-align:left;
 			}
@@ -88,15 +91,15 @@
 			* @@style heading 3
 			*/
 			h3, .h3{
-				/*@@editable*/ color:#606060;
+				/*@@editable*/ color:#202020;
 				display:block;
 				/*@@editable*/ font-family:Arial;
-				/*@@editable*/ font-size:16px;
+				/*@@editable*/ font-size:26px;
 				/*@@editable*/ font-weight:bold;
 				/*@@editable*/ line-height:100%;
-				margin-top:2%;
+				margin-top:0;
 				margin-right:0;
-				margin-bottom:1%;
+				margin-bottom:10px;
 				margin-left:0;
 				/*@@editable*/ text-align:left;
 			}
@@ -108,21 +111,21 @@
 			* @@style heading 4
 			*/
 			h4, .h4{
-				/*@@editable*/ color:#808080;
+				/*@@editable*/ color:#202020;
 				display:block;
 				/*@@editable*/ font-family:Arial;
-				/*@@editable*/ font-size:14px;
+				/*@@editable*/ font-size:22px;
 				/*@@editable*/ font-weight:bold;
 				/*@@editable*/ line-height:100%;
-				margin-top:2%;
+				margin-top:0;
 				margin-right:0;
-				margin-bottom:1%;
+				margin-bottom:10px;
 				margin-left:0;
 				/*@@editable*/ text-align:left;
 			}
-			
+
 			/* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: PREHEADER /\/\/\/\/\/\/\/\/\/\ */
-			
+
 			/**
 			* @@tab Header
 			* @@section preheader style
@@ -132,20 +135,20 @@
 			#templatePreheader{
 				/*@@editable*/ background-color:#FAFAFA;
 			}
-			
+
 			/**
 			* @@tab Header
 			* @@section preheader text
 			* @@tip Set the styling for your email's preheader text. Choose a size and color that is easy to read.
 			*/
 			.preheaderContent div{
-				/*@@editable*/ color:#707070;
+				/*@@editable*/ color:#505050;
 				/*@@editable*/ font-family:Arial;
 				/*@@editable*/ font-size:10px;
 				/*@@editable*/ line-height:100%;
 				/*@@editable*/ text-align:left;
 			}
-			
+
 			/**
 			* @@tab Header
 			* @@section preheader link
@@ -156,18 +159,9 @@
 				/*@@editable*/ font-weight:normal;
 				/*@@editable*/ text-decoration:underline;
 			}
-			
-			/**
-			* @@tab Header
-			* @@section social bar style
-			* @@tip Set the background color and border for your email's footer social bar.
-			*/
-			#social div{
-				/*@@editable*/ text-align:right;
-			}
-			
+
 			/* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: HEADER /\/\/\/\/\/\/\/\/\/\ */
-			
+
 			/**
 			* @@tab Header
 			* @@section header style
@@ -176,9 +170,9 @@
 			*/
 			#templateHeader{
 				/*@@editable*/ background-color:#FFFFFF;
-				/*@@editable*/ border-bottom:5px solid #505050;
+				/*@@editable*/ border-bottom:0;
 			}
-			
+
 			/**
 			* @@tab Header
 			* @@section header text
@@ -190,11 +184,11 @@
 				/*@@editable*/ font-size:34px;
 				/*@@editable*/ font-weight:bold;
 				/*@@editable*/ line-height:100%;
-				/*@@editable*/ padding:10px;
-				/*@@editable*/ text-align:right;
+				/*@@editable*/ padding:0;
+				/*@@editable*/ text-align:center;
 				/*@@editable*/ vertical-align:middle;
 			}
-			
+
 			/**
 			* @@tab Header
 			* @@section header link
@@ -205,23 +199,23 @@
 				/*@@editable*/ font-weight:normal;
 				/*@@editable*/ text-decoration:underline;
 			}
-			
+
 			#headerImage{
 				height:auto;
 				max-width:600px !important;
 			}
-			
+
 			/* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: MAIN BODY /\/\/\/\/\/\/\/\/\/\ */
-			
+
 			/**
 			* @@tab Body
 			* @@section body style
 			* @@tip Set the background color for your email's body area.
 			*/
 			#templateContainer, .bodyContent{
-				/*@@editable*/ background-color:#FDFDFD;
+				/*@@editable*/ background-color:#FFFFFF;
 			}
-			
+
 			/**
 			* @@tab Body
 			* @@section body text
@@ -233,9 +227,9 @@
 				/*@@editable*/ font-family:Arial;
 				/*@@editable*/ font-size:14px;
 				/*@@editable*/ line-height:150%;
-				/*@@editable*/ text-align:justify;
+				/*@@editable*/ text-align:left;
 			}
-			
+
 			/**
 			* @@tab Body
 			* @@section body link
@@ -246,63 +240,14 @@
 				/*@@editable*/ font-weight:normal;
 				/*@@editable*/ text-decoration:underline;
 			}
-			
+
 			.bodyContent img{
 				display:inline;
 				height:auto;
 			}
-			
-			/* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: SIDEBAR /\/\/\/\/\/\/\/\/\/\ */
-			
-			/**
-			* @@tab Sidebar
-			* @@section sidebar style
-			* @@tip Set the background color and border for your email's sidebar area.
-			*/
-			#templateSidebar{
-				/*@@editable*/ background-color:#FDFDFD;
-			}
-			
-			/**
-			* @@tab Sidebar
-			* @@section sidebar style
-			* @@tip Set the background color and border for your email's sidebar area.
-			*/
-			.sidebarContent{
-				/*@@editable*/ border-left:1px solid #DDDDDD;
-			}
-			
-			/**
-			* @@tab Sidebar
-			* @@section sidebar text
-			* @@tip Set the styling for your email's sidebar text. Choose a size and color that is easy to read.
-			*/
-			.sidebarContent div{
-				/*@@editable*/ color:#505050;
-				/*@@editable*/ font-family:Arial;
-				/*@@editable*/ font-size:10px;
-				/*@@editable*/ line-height:150%;
-				/*@@editable*/ text-align:left;
-			}
-			
-			/**
-			* @@tab Sidebar
-			* @@section sidebar link
-			* @@tip Set the styling for your email's sidebar links. Choose a color that helps them stand out from your text.
-			*/
-			.sidebarContent div a:link, .sidebarContent div a:visited, /* Yahoo! Mail Override */ .sidebarContent div a .yshortcuts /* Yahoo! Mail Override */{
-				/*@@editable*/ color:#336699;
-				/*@@editable*/ font-weight:normal;
-				/*@@editable*/ text-decoration:underline;
-			}
-			
-			.sidebarContent img{
-				display:inline;
-				height:auto;
-			}
-			
+
 			/* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: FOOTER /\/\/\/\/\/\/\/\/\/\ */
-			
+
 			/**
 			* @@tab Footer
 			* @@section footer style
@@ -310,10 +255,10 @@
 			* @@theme footer
 			*/
 			#templateFooter{
-				/*@@editable*/ background-color:#FAFAFA;
-				/*@@editable*/ border-top:3px solid #909090;
+				/*@@editable*/ background-color:#FFFFFF;
+				/*@@editable*/ border-top:0;
 			}
-			
+
 			/**
 			* @@tab Footer
 			* @@section footer text
@@ -323,11 +268,11 @@
 			.footerContent div{
 				/*@@editable*/ color:#707070;
 				/*@@editable*/ font-family:Arial;
-				/*@@editable*/ font-size:11px;
+				/*@@editable*/ font-size:12px;
 				/*@@editable*/ line-height:125%;
 				/*@@editable*/ text-align:left;
 			}
-			
+
 			/**
 			* @@tab Footer
 			* @@section footer link
@@ -338,11 +283,11 @@
 				/*@@editable*/ font-weight:normal;
 				/*@@editable*/ text-decoration:underline;
 			}
-			
+
 			.footerContent img{
 				display:inline;
 			}
-			
+
 			/**
 			* @@tab Footer
 			* @@section social bar style
@@ -350,19 +295,19 @@
 			* @@theme footer
 			*/
 			#social{
-				/*@@editable*/ background-color:#FFFFFF;
+				/*@@editable*/ background-color:#FAFAFA;
 				/*@@editable*/ border:0;
 			}
-			
+
 			/**
 			* @@tab Footer
 			* @@section social bar style
 			* @@tip Set the background color and border for your email's footer social bar.
 			*/
 			#social div{
-				/*@@editable*/ text-align:left;
+				/*@@editable*/ text-align:center;
 			}
-			
+
 			/**
 			* @@tab Footer
 			* @@section utility bar style
@@ -370,8 +315,8 @@
 			* @@theme footer
 			*/
 			#utility{
-				/*@@editable*/ background-color:#FAFAFA;
-				/*@@editable*/ border-top:0;
+				/*@@editable*/ background-color:#FFFFFF;
+				/*@@editable*/ border:0;
 			}
 
 			/**
@@ -380,11 +325,11 @@
 			* @@tip Set the background color and border for your email's footer utility bar.
 			*/
 			#utility div{
-				/*@@editable*/ text-align:left;
+				/*@@editable*/ text-align:center;
 			}
-			
+
 			#monkeyRewards img{
-				max-width:170px !important;
+				max-width:190px;
 			}
 		</style>
 	</head>
@@ -408,9 +353,9 @@
                                             </td>
                                             @if (false) {
                                             <!-- *|IFNOT:ARCHIVE_PAGE|* -->
-											<td valign="top" width="170">
+											<td valign="top" width="190">
                                             	<div mc:edit="std_preheader_links">
-                                                	Email not displaying correctly?<br /><a href="*|ARCHIVE|*" target="_blank">View it in your browser</a>.
+                                                	Is this email not displaying correctly?<br /><a href="*|ARCHIVE|*" target="_blank">View it in your browser</a>.
                                                 </div>
                                             </td>
                                             }
@@ -418,7 +363,7 @@
                                         </tr>
                                     </table>
                                 	<!-- // End Module: Standard Preheader \ -->
-                                    
+                                
                                 </td>
                             </tr>
                         </table>
@@ -429,13 +374,12 @@
                                     <!-- // Begin Template Header \\ -->
                                 	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader">
                                         <tr>
-                                            <td class="headerContent" width="100%" style="padding-left:20px; padding-right:10px;">
-                                            	<div mc:edit="Header_content">
-                                                    <h1>Welcome to GiveCRM!</h1>
-                                            	</div>
-                                            </td>
-                                        	<td class="headerContent">
-                                            	<img src="http://i.istockimg.com/file_thumbview_approve/17298013/2/stock-photo-17298013-growing-investment.jpg" style="max-width:180px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowtext />
+                                            <td class="headerContent">
+                                            
+                                            	<!-- // Begin Module: Standard Header Image \\ -->
+                                            	<img src="http://localhost:50837/Content/Images/GiveCRM-email-header.png" style="max-width:600px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+                                            	<!-- // End Module: Standard Header Image \\ -->
+                                            
                                             </td>
                                         </tr>
                                     </table>
@@ -445,15 +389,16 @@
                         	<tr>
                             	<td align="center" valign="top">
                                     <!-- // Begin Template Body \\ -->
-                                	<table border="0" cellpadding="10" cellspacing="0" width="600" id="templateBody">
+                                	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody">
                                     	<tr>
-                                        	<td valign="top" class="bodyContent">
-                                            
+                                            <td valign="top" class="bodyContent">
+                                
                                                 <!-- // Begin Module: Standard Content \\ -->
-                                                <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                                                <table border="0" cellpadding="20" cellspacing="0" width="100%">
                                                     <tr>
-                                                        <td valign="top" style="padding-right:0;">
+                                                        <td valign="top">
                                                             <div mc:edit="std_content00">
+                                                                <h1 class="h1">Welcome to GiveCRM!</h1>
                                                                 <p>To complete the process of activating your new charity tracking system, click:
                                                                 http://givecrm.org/SignUp/StartSite/@ViewBag.ActivationToken
                                                                 </p>
@@ -473,43 +418,13 @@
                                                                 <p>Thanks,</p>
 
                                                                 <p>The GiveCRM Team.</p>
-															</div>
+                                                            </div>
 														</td>
                                                     </tr>
                                                 </table>
                                                 <!-- // End Module: Standard Content \\ -->
-                                            
+                                                
                                             </td>
-                                        	<!-- // Begin Sidebar \\  -->
-                                        	<td valign="top" width="180" id="templateSidebar">
-                                            	<table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                                	<tr>
-                                                    	<td valign="top">
-                                                        
-                                                            <!-- // Begin Module: Standard Content \\ -->
-                                                            <table border="0" cellpadding="20" cellspacing="0" width="100%" class="sidebarContent">
-                                                                <tr>
-                                                                    <td valign="top" style="padding-right:10px;">
-                                                                        <div mc:edit="std_content01">
-                                                                            <strong>Keep in touch</strong>
-                                                                            <br />
-                                                                            Let your members know what's happening.
-                                                                            <br />
-                                                                            <br />
-                                                                            <strong>Stay in charge</strong>
-                                                                            <br />
-                                                                            Control and explore your data.
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                            <!-- // End Module: Standard Content \\ -->
-                                                        
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                            <!-- // End Sidebar \\ -->
                                         </tr>
                                     </table>
                                     <!-- // End Template Body \\ -->
@@ -518,7 +433,7 @@
                         	<tr>
                             	<td align="center" valign="top">
                                     <!-- // Begin Template Footer \\ -->
-                                	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateFooter">
+                                	<table border="0" cellpadding="10" cellspacing="0" width="600" id="templateFooter">
                                     	<tr>
                                         	<td valign="top" class="footerContent">
                                             
@@ -527,10 +442,12 @@
                                                     <tr>
                                                         <td valign="top" width="350">
                                                             <div mc:edit="std_footer">
-                                                        Received this email in error? No problem. This means someone attempted to create a charity account at www.GiveCRM.org with your email address.  As long as you don't activate the account using the link above it can't be used and no further action is necessary on your part.
-                                                            </div>
+Received this email in error? No problem. This means someone attempted to create a charity account at www.GiveCRM.org with your email address.  As long as you don't activate the account using the link above it can't be used and no further action is necessary on your part.                                                            </div>
                                                         </td>
                                                         <td valign="top" width="190" id="monkeyRewards">
+                                                            <div mc:edit="monkeyrewards">
+
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     @if (false) {
@@ -538,24 +455,6 @@
                                                         <td colspan="2" valign="middle" id="social">
                                                             <div mc:edit="std_social">
                                                                 &nbsp;<a href="*|TWITTER:PROFILEURL|*">follow on Twitter</a> | <a href="*|FACEBOOK:PROFILEURL|*">friend on Facebook</a> | <a href="*|FORWARD|*">forward to a friend</a>&nbsp;
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td valign="top" width="350">
-                                                            <div mc:edit="std_footer">
-																<em>Copyright &copy; *|CURRENT_YEAR|* *|LIST:COMPANY|*, All rights reserved.</em>
-																<br />
-																*|IFNOT:ARCHIVE_PAGE|* *|LIST:DESCRIPTION|*
-																<br />
-																<strong>Our mailing address is:</strong>
-																<br />
-																*|HTML:LIST_ADDRESS_HTML|**|END:IF|* 
-                                                            </div>
-                                                        </td>
-                                                        <td valign="top" width="190" id="monkeyRewards">
-                                                            <div mc:edit="monkeyrewards">
-                                                                *|IF:REWARDS|* *|HTML:REWARDS|* *|END:IF|*
                                                             </div>
                                                         </td>
                                                     </tr>
