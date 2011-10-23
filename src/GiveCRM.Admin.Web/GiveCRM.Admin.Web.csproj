@@ -151,6 +151,8 @@
     <Content Include="Views\Emails\SignUp.cshtml" />
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Emails\SignUp.Text.cshtml" />
+    <Content Include="Views\Emails\SignUp.Html.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
