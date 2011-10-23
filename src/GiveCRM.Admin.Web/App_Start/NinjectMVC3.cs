@@ -50,6 +50,8 @@ namespace GiveCRM.Admin.Web.App_Start
         {
             kernel.Scan(a =>
             {
+                //a.FromAssemblyContaining(typeof(MvcApplication));
+                //a.BindWith<SameAssemblyBindingGenerator>();
                 a.FromCallingAssembly();
                 a.FromAssembliesMatching("GiveCRM.*.dll");
                 a.AutoLoadModules();

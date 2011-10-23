@@ -18,7 +18,7 @@ namespace GiveCRM.Admin.DataAccess
 
         public bool RegisterUserAndCharity(RegistrationInfo registrationInfo)
         {
-            bool result;
+            bool result = false;
             using (var scope = new TransactionScope())
             {
                 var charity = new Charity
@@ -27,7 +27,9 @@ namespace GiveCRM.Admin.DataAccess
                                       RegisteredCharityNumber = registrationInfo.CharityName,
                                       SubDomain = registrationInfo.SubDomain
                                   };
-                var created = CharitiesDataAccess.Insert(charity);
+                var newCharity = CharitiesDataAccess.Insert(charity);
+                if (newCharity == null) throw new ArgumentNullException("newCharity");
+
 
                 // Attempt to register the user
                 MembershipCreateStatus createStatus;
@@ -37,10 +39,16 @@ namespace GiveCRM.Admin.DataAccess
 
                 var charityMembership = new CharityMembership
                                             {
-                                                CharityId = created.Id,
-                                                UserId = user.
+                                                CharityId = newCharity.Id,
+                                                UserName = user.UserName
                                             };
-                CharitiesMembershipsDataAccess.Insert()
+                var newCharityMembership = CharitiesMembershipsDataAccess.Insert(charityMembership);
+
+                if (createStatus == MembershipCreateStatus.Success && newCharityMembership != null )
+                {
+                    result = true;
+                    scope.Complete();
+                }
             }
 
             return result;

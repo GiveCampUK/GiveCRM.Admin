@@ -373,10 +373,19 @@ PRINT N'Creating [dbo].[CharityMembership]...';
 
 GO
 CREATE TABLE [dbo].[CharityMembership] (
-    [Id]        INT              NOT NULL,
-    [CharityId] INT              NOT NULL,
-    [UserId]    UNIQUEIDENTIFIER NOT NULL
+    [Id]        INT           IDENTITY (1, 1) NOT NULL,
+    [CharityId] INT           NOT NULL,
+    [UserName]  NVARCHAR (50) NOT NULL
 );
+
+
+GO
+PRINT N'Creating PK_CharityMembership...';
+
+
+GO
+ALTER TABLE [dbo].[CharityMembership]
+    ADD CONSTRAINT [PK_CharityMembership] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
 
 
 GO

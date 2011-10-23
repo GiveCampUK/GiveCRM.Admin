@@ -6,6 +6,6 @@ namespace GiveCRM.Admin.Models
     {
         public int Id { get; set; }
         public int CharityId { get; set; }
-        public Guid UserId { get; set; }
+        public string UserName { get; set; }
     }
 }

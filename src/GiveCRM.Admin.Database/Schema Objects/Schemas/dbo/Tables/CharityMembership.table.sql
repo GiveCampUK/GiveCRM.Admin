@@ -1,6 +1,8 @@
 ﻿CREATE TABLE [dbo].[CharityMembership] (
-    [Id]        INT              NOT NULL,
-    [CharityId] INT              NOT NULL,
-    [UserId]    UNIQUEIDENTIFIER NOT NULL
+    [Id]        INT           IDENTITY (1, 1) NOT NULL,
+    [CharityId] INT           NOT NULL,
+    [UserName]  NVARCHAR (50) NOT NULL
 );
+
+
 
