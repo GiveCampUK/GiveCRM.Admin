@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.BusinessLogic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Admin.BusinessLogic.Tests", "GiveCRM.Admin.BusinessLogic.Tests\GiveCRM.Admin.BusinessLogic.Tests.csproj", "{7D5CFBB4-3674-4A47-8C60-7E127B113696}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveCRM.Models", "..\GiveCRM_App\src\GiveCRM.Models\GiveCRM.Models.csproj", "{EF13BB24-17A9-4A39-BB5C-9A3B36519CB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{7D5CFBB4-3674-4A47-8C60-7E127B113696}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D5CFBB4-3674-4A47-8C60-7E127B113696}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D5CFBB4-3674-4A47-8C60-7E127B113696}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF13BB24-17A9-4A39-BB5C-9A3B36519CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF13BB24-17A9-4A39-BB5C-9A3B36519CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF13BB24-17A9-4A39-BB5C-9A3B36519CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF13BB24-17A9-4A39-BB5C-9A3B36519CB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

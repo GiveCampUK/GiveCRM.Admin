@@ -84,7 +84,7 @@ namespace GiveCRM.Admin.Web.Controllers
 
         public ActionResult ImportCompleted(IEnumerable<IDictionary<string, object>> data)
         {
-            
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }
