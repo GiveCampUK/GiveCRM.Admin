@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -164,6 +167,10 @@
     <ProjectReference Include="..\GiveCRM.Admin.BusinessLogic\GiveCRM.Admin.BusinessLogic.csproj">
       <Project>{6442A87F-51D2-4694-B712-61D4512B162A}</Project>
       <Name>GiveCRM.Admin.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GiveCRM.Admin.DataAccess\GiveCRM.Admin.DataAccess.csproj">
+      <Project>{5E73464B-0363-49C2-93E8-92B81E564DB0}</Project>
+      <Name>GiveCRM.Admin.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\GiveCRM.Admin.Models\GiveCRM.Admin.Models.csproj">
       <Project>{D00A47FB-4BAC-44C8-B7EF-6A42B268C9A0}</Project>

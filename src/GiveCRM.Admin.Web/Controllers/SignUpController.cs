@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using AutoMapper;
+using GiveCRM.Admin.DataAccess;
+using GiveCRM.Admin.Models;
 using GiveCRM.Admin.Web.Extensions;
 using GiveCRM.Admin.Web.Helpers;
 using GiveCRM.Admin.Web.Interfaces;
 using GiveCRM.Admin.Web.Services;
 using GiveCRM.Admin.Web.ViewModels.SignUp;
+using IConfiguration = GiveCRM.Admin.Web.Interfaces.IConfiguration;
 
 namespace GiveCRM.Admin.Web.Controllers
 {
@@ -13,15 +17,14 @@ namespace GiveCRM.Admin.Web.Controllers
     {
         private readonly IConfiguration configuration;
         private readonly ISignUpQueueingService signUpQueueingService;
+        private readonly ICharityMembershipService _charityMembershipService;
 
-        // TODO IoC here
-        public SignUpController() : this(new HardCodedConfiguration(), new SignUpNonQueueingService())
-        { }
 
-        public SignUpController(IConfiguration configuration, ISignUpQueueingService signUpQueueingService)
+        public SignUpController(IConfiguration configuration, ISignUpQueueingService signUpQueueingService, ICharityMembershipService charityMembershipService)
         {
             this.configuration = configuration;
             this.signUpQueueingService = signUpQueueingService;
+            _charityMembershipService = charityMembershipService;
         }
 
         [HttpGet]
@@ -40,21 +43,30 @@ namespace GiveCRM.Admin.Web.Controllers
 
             var subDomain = GetSubDomainFromCharityName(requiredInfo.CharityName);
             var activationToken = TokenHelper.CreateRandomIdentifier();
-            /*
-            Add membership record inc. domain information
-            */
-            var emailViewModel = new EmailViewModel
-                                     {
-                                         To = requiredInfo.UserIdentifier,
-                                         ActivationToken = activationToken.AsQueryString()
-                                     };
 
-            signUpQueueingService.QueueEmail(emailViewModel);
-            signUpQueueingService.QueueProvisioning();
+            var registrationInfo = new RegistrationInfo();
+            Mapper.DynamicMap(requiredInfo, registrationInfo);
 
-            TempData["SubDomain"] = subDomain;
+            var result = _charityMembershipService.RegisterUserAndCharity(registrationInfo);
 
-            return RedirectToAction("Complete");
+            if (result)
+            {
+                var emailViewModel = new EmailViewModel
+                                         {
+                                             To = requiredInfo.UserIdentifier,
+                                             ActivationToken = activationToken.AsQueryString()
+                                         };
+
+                signUpQueueingService.QueueEmail(emailViewModel);
+                signUpQueueingService.QueueProvisioning();
+
+                TempData["SubDomain"] = subDomain;
+
+                return RedirectToAction("Complete");
+            }
+
+            ModelState.AddModelError("", "User and Charity registration failed. Please contact support.");
+            return View();
         }
 
         [HttpGet]
