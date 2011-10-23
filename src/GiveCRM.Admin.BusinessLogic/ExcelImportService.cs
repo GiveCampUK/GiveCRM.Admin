@@ -46,16 +46,6 @@ namespace GiveCRM.Admin.BusinessLogic
         public event Action<object, ImportDataCompletedEventArgs> ImportCompleted;
         public event Action<object, ImportDataFailedEventArgs> ImportFailed;
 
-        public void ImportAsync(Stream file)
-        {
-            var importTask = Task.Factory.StartNew(() => Import(file));
-
-            importTask.ContinueWith(InvokeImportDataCompleted, TaskContinuationOptions.OnlyOnRanToCompletion);
-            importTask.ContinueWith(InvokeImportErrorFailed, TaskContinuationOptions.OnlyOnFaulted);
-        }
-
-        #endregion
-
         public void Import(Stream file)
         {
             //  FIELDS THAT CANNOT BE NULL!
@@ -65,13 +55,31 @@ namespace GiveCRM.Admin.BusinessLogic
             //    Salutation
             //    [Archived] - Not in template.
 
-            // Hard-coded for now - FIX THIS!!!
-            const ExcelFileType fileType = ExcelFileType.XLS;
-            importer.Open(file, fileType, hasHeaderRow: true);
+            try
+            {
+                // Hard-coded for now - FIX THIS!!!
+                const ExcelFileType fileType = ExcelFileType.XLS;
+                importer.Open(file, fileType, hasHeaderRow: true);
 
-            const int sheetIndex = 0; // Hard-coded for now
-            IEnumerable<IDictionary<string, object>> rowsAsKeyValuePairs = importer.GetRowsAsKeyValuePairs(sheetIndex);
+                const int sheetIndex = 0; // Hard-coded for now
+                IEnumerable<IDictionary<string, object>> rowsAsKeyValuePairs =
+                    importer.GetRowsAsKeyValuePairs(sheetIndex);
 
+                AddArchivedFieldToData(rowsAsKeyValuePairs); // This is a non-null field
+                db.Members.Insert(rowsAsKeyValuePairs);
+
+                InvokeImportDataCompleted();
+            } 
+            catch(Exception ex)
+            {
+                InvokeImportErrorFailed(ex);
+            }
+        }
+
+        #endregion
+
+        private static void AddArchivedFieldToData(IEnumerable<IDictionary<string, object>> rowsAsKeyValuePairs)
+        {
             foreach (var row in rowsAsKeyValuePairs)
             {
                 object archived;
@@ -80,13 +88,11 @@ namespace GiveCRM.Admin.BusinessLogic
                     row["Archived"] = false;
                 }
             }
-
-            db.Members.Insert(rowsAsKeyValuePairs);
         }
 
         #region Invoke Events
 
-        private void InvokeImportDataCompleted(Task task)
+        private void InvokeImportDataCompleted()
         {
             var handler = ImportCompleted;
             if (handler != null)
@@ -95,9 +101,9 @@ namespace GiveCRM.Admin.BusinessLogic
             }
         }
 
-        private void InvokeImportErrorFailed(Task task)
+        private void InvokeImportErrorFailed(Exception exception)
         {
-            if (task.Exception == null)
+            if (exception == null)
             {
                 // No exception, no failure
                 return;
@@ -106,7 +112,7 @@ namespace GiveCRM.Admin.BusinessLogic
             var handler = ImportFailed;
             if (handler != null)
             {
-                handler(this, new ImportDataFailedEventArgs(task.Exception.InnerExceptions));
+                handler(this, new ImportDataFailedEventArgs(exception));
             }
         }
 
