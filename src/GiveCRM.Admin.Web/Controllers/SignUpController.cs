@@ -19,10 +19,6 @@ namespace GiveCRM.Admin.Web.Controllers
         private readonly ISignUpQueueingService signUpQueueingService;
         private readonly ICharityMembershipService _charityMembershipService;
 
-        public SignUpController(): this(new HardCodedConfiguration(), new SignUpNonQueueingService(), new CharityMembershipService() )
-        {
-            
-        }
         public SignUpController(IConfiguration configuration, ISignUpQueueingService signUpQueueingService, ICharityMembershipService charityMembershipService)
         {
             this.configuration = configuration;
@@ -48,7 +44,7 @@ namespace GiveCRM.Admin.Web.Controllers
             var activationToken = TokenHelper.CreateRandomIdentifier();
 
             var registrationInfo = new RegistrationInfo();
-            Mapper.DynamicMap(requiredInfo, registrationInfo);
+            Mapper.DynamicMap(requiredInfoViewModel, registrationInfo);
 
             var result = _charityMembershipService.RegisterUserAndCharity(registrationInfo);
 
@@ -56,7 +52,7 @@ namespace GiveCRM.Admin.Web.Controllers
             {
                 var emailViewModel = new EmailViewModel
                                          {
-                                             To = requiredInfo.UserIdentifier,
+                                             To = requiredInfoViewModel.UserIdentifier,
                                              ActivationToken = activationToken.AsQueryString()
                                          };
 

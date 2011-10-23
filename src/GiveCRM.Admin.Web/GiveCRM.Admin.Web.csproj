@@ -115,7 +115,6 @@
     </Compile>
     <Compile Include="Interfaces\IFileSystemWrapper.cs" />
     <Compile Include="ViewModels\SignUp\RequiredInfoViewModel.cs" />
-    <Compile Include="ViewModels\SignUp\RequiredInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SignUpNonQueueingService.cs" />
     <Compile Include="ViewModels\ExcelImportViewModel.cs" />
