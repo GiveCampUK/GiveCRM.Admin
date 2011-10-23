@@ -9,7 +9,7 @@ namespace GiveCRM.Admin.Web.App_Start
         public override void Load()
         {
             Bind<IConfiguration>()
-                .To<HardCodedConfiguration>()
+                .To<WebConfigConfiguration>()
                 .InRequestScope();
         }
     }
