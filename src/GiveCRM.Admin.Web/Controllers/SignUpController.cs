@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using GiveCRM.Admin.Web.Extensions;
 using GiveCRM.Admin.Web.Helpers;
@@ -31,21 +30,21 @@ namespace GiveCRM.Admin.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignUp(RequiredInfo requiredInfo)
+        public ActionResult SignUp(RequiredInfoViewModel requiredInfoViewModel)
         {
             if (!ModelState.IsValid)
             {
-                return View(requiredInfo);
+                return View(requiredInfoViewModel);
             }
 
-            var subDomain = GetSubDomainFromCharityName(requiredInfo.CharityName);
+            var subDomain = GetSubDomainFromCharityName(requiredInfoViewModel.CharityName);
             var activationToken = TokenHelper.CreateRandomIdentifier();
             /*
             Add membership record inc. domain information
             */
             var emailViewModel = new EmailViewModel
                                      {
-                                         To = requiredInfo.UserIdentifier,
+                                         To = requiredInfoViewModel.UserIdentifier,
                                          ActivationToken = activationToken.AsQueryString()
                                      };
 
