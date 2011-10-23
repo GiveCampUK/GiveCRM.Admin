@@ -1,19 +1,20 @@
 ﻿using System;
+using System.Configuration;
 using GiveCRM.Admin.Web.Interfaces;
 
 namespace GiveCRM.Admin.Web.Controllers
 {
-    public class HardCodedConfiguration : IConfiguration
+    public class WebConfigConfiguration : IConfiguration
     {
         public string BaseDomain
         {
-            get { return "givecamp.org"; }
+            get { return ConfigurationManager.AppSettings["BaseDomain"]; }
             set { throw new NotImplementedException(); }
         }
 
         public string ExcelTemplatePath
         {
-            get { return "/Content/Files/GiveCRM_Template.xls"; }
+            get { return ConfigurationManager.AppSettings["ExcelTemplatePath"]; }
             set { throw new NotImplementedException(); }
         }
     }

@@ -100,8 +100,8 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ExcelImportController.cs" />
     <Compile Include="Controllers\FileSystemWrapper.cs" />
-    <Compile Include="Controllers\HardCodedConfiguration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\WebConfigConfiguration.cs" />
     <Compile Include="Extensions\GuidExtensions.cs" />
     <Compile Include="Helpers\TokenHelper.cs" />
     <Compile Include="Interfaces\ISignUpQueueingService.cs" />
