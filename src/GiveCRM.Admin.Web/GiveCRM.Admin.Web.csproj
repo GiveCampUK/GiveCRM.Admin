@@ -94,7 +94,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\ConfigurationModule.cs" />
     <Compile Include="App_Start\NinjectMVC3.cs" />
+    <Compile Include="App_Start\QueueingServiceModule.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ExcelImportController.cs" />
     <Compile Include="Controllers\FileSystemWrapper.cs" />

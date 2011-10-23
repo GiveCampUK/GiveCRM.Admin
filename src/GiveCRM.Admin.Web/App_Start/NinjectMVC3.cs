@@ -54,7 +54,7 @@ namespace GiveCRM.Admin.Web.App_Start
                 a.FromAssembliesMatching("GiveCRM.*.dll");
                 a.AutoLoadModules();
                 a.BindWithDefaultConventions();
-            });
+            });           
         }        
     }
 }

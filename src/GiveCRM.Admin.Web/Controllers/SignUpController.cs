@@ -13,10 +13,6 @@ namespace GiveCRM.Admin.Web.Controllers
         private readonly IConfiguration configuration;
         private readonly ISignUpQueueingService signUpQueueingService;
 
-        // TODO IoC here
-        public SignUpController() : this(new HardCodedConfiguration(), new SignUpNonQueueingService())
-        { }
-
         public SignUpController(IConfiguration configuration, ISignUpQueueingService signUpQueueingService)
         {
             this.configuration = configuration;
