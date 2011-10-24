@@ -97,8 +97,6 @@
     <Compile Include="App_Start\ConfigurationModule.cs" />
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="App_Start\QueueingServiceModule.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\ExcelImportController.cs" />
     <Compile Include="Controllers\FileSystemWrapper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WebConfigConfiguration.cs" />
@@ -168,16 +166,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ExcelImport\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\GiveCRM_App\src\GiveCRM.Models\GiveCRM.Models.csproj">
-      <Project>{EF13BB24-17A9-4A39-BB5C-9A3B36519CB1}</Project>
-      <Name>GiveCRM.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GiveCRM.Admin.BusinessLogic\GiveCRM.Admin.BusinessLogic.csproj">
-      <Project>{6442A87F-51D2-4694-B712-61D4512B162A}</Project>
-      <Name>GiveCRM.Admin.BusinessLogic</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
