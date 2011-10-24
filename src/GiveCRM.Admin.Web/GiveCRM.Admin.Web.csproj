@@ -97,7 +97,6 @@
     <Compile Include="App_Start\ConfigurationModule.cs" />
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="App_Start\QueueingServiceModule.cs" />
-    <Compile Include="Controllers\FileSystemWrapper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WebConfigConfiguration.cs" />
     <Compile Include="Extensions\GuidExtensions.cs" />
@@ -108,11 +107,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IFileSystemWrapper.cs" />
     <Compile Include="ViewModels\SignUp\RequiredInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SignUpNonQueueingService.cs" />
-    <Compile Include="ViewModels\ExcelImportViewModel.cs" />
     <Compile Include="ViewModels\SignUp\CompleteViewModel.cs" />
     <Compile Include="Interfaces\IAdditionalInfo.cs" />
     <Compile Include="ViewModels\SignUp\EmailViewModel.cs" />
@@ -154,7 +151,6 @@
     <Content Include="Views\Shared\SignUpForm.cshtml" />
     <Content Include="Views\Emails\SignUp.cshtml" />
     <Content Include="Views\Emails\_ViewStart.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Emails\SignUp.Text.cshtml" />
     <Content Include="Views\Emails\SignUp.Html.cshtml" />
     <Content Include="Views\SignUp\StartSite.cshtml" />
@@ -163,9 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ExcelImport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />

@@ -20,4 +20,4 @@ NDependOut
 *.dotCover
 *_mm_cache.bin
 .DS_Store
-
+*.user
