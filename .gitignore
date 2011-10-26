@@ -19,3 +19,7 @@ apply_config.bat
 NDependOut
 *.dotCover
 *_mm_cache.bin
+.DS_Store
+*.user
+src/GiveCRM.Admin.Database/sql/debug
+src/GiveCRM.Admin.Database/sql/release
