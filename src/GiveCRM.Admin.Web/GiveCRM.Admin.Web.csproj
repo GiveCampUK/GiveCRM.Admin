@@ -162,6 +162,7 @@
     <Content Include="Views\SignUp\StartSite.cshtml" />
     <Content Include="Views\Shared\_GlobFooter.cshtml" />
     <Content Include="Views\Shared\_GlobHeader.cshtml" />
+    <Content Include="Views\Home\Holding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
