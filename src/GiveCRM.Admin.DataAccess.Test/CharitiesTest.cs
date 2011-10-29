@@ -31,8 +31,6 @@ namespace GiveCRM.Admin.DataAccess.Test
 
             Assert.AreNotEqual(0, actual.Id);
             Assert.AreEqual(TestName, actual.Name);
-            Assert.AreEqual(TestUserId, actual.UserId);
-            Assert.IsTrue(actual.VerifyPassword(TestPassword));
         }
 
         [Test]
@@ -42,15 +40,12 @@ namespace GiveCRM.Admin.DataAccess.Test
 
             var actual = new Charities().GetByUserId(TestUserId);
             Assert.IsNotNull(actual);
-            Assert.AreEqual(TestUserId, actual.UserId);
-            Assert.IsTrue(actual.VerifyPassword(TestPassword));
         }
 
         [Test]
         public void TestUpdateWithAdditionalInfo()
         {
             var target = CreateCharity();
-            target.UserName = TestUserName;
             target.RegisteredCharityNumber = TestRegisteredCharityNumber;
             target.SubDomain = TestSubDomain;
 
@@ -60,9 +55,6 @@ namespace GiveCRM.Admin.DataAccess.Test
             var actual = data.Get(target.Id);
 
             Assert.AreEqual(TestName, actual.Name);
-            Assert.AreEqual(TestUserId, actual.UserId);
-            Assert.IsTrue(actual.VerifyPassword(TestPassword));
-            Assert.AreEqual(TestUserName, actual.UserName);
             Assert.AreEqual(TestRegisteredCharityNumber, actual.RegisteredCharityNumber);
             Assert.AreEqual(TestSubDomain, actual.SubDomain);
         }
@@ -72,9 +64,7 @@ namespace GiveCRM.Admin.DataAccess.Test
             var charity = new Charity
                               {
                                   Name = TestName,
-                                  UserId = TestUserId
                               };
-            charity.SetPassword(TestPassword);
 
             var target = new Charities();
 

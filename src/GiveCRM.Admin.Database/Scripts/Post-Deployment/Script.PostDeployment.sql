@@ -9,3 +9,27 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+
+USE [GiveCRM.Admin.Database]
+GO
+
+INSERT INTO [dbo].[aspnet_SchemaVersions]
+ ([Feature]
+ ,[CompatibleSchemaVersion]
+ ,[IsCurrentVersion])
+ VALUES
+ ('common'
+ ,1
+ ,1)
+GO
+
+
+INSERT INTO [dbo].[aspnet_SchemaVersions]
+ ([Feature]
+ ,[CompatibleSchemaVersion]
+ ,[IsCurrentVersion])
+ VALUES
+ ('membership'
+ ,1
+ ,1)
+GO
