@@ -46,8 +46,6 @@ namespace GiveCRM.Admin.Web.Controllers
 
             var registrationInfo = new RegistrationInfo();
             Mapper.DynamicMap(requiredInfoViewModel, registrationInfo);
-            //TODO subDomain should be stored to database
-            Session[activationToken.AsQueryString()] = subDomain;
 
             var result = _charityMembershipService.RegisterUserAndCharity(registrationInfo);
 
@@ -119,7 +117,7 @@ namespace GiveCRM.Admin.Web.Controllers
         private string GetSubDomainFromActivationToken(string activationToken)
         {
             //TODO get this from database
-            var token = Session[activationToken];
+            var token = "";
             return token == null ? "" : token.ToString();
         }
     }
