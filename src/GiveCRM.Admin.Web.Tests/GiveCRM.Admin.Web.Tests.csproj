@@ -31,8 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=2.0.0.232, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL" />
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib.TestHelper">
+      <HintPath>..\packages\MvcContrib.Mvc3.TestHelper-ci.3.0.90.0\lib\MvcContrib.TestHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.2.1.0\lib\NET40\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
@@ -42,6 +49,9 @@
     </Reference>
     <Reference Include="pnunit.framework">
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\packages\RhinoMocks.3.6\lib\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,12 +64,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HomeControllerTests.cs" />
+    <Compile Include="SignUpControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GiveCRM.Admin.DataAccess\GiveCRM.Admin.DataAccess.csproj">
+      <Project>{5E73464B-0363-49C2-93E8-92B81E564DB0}</Project>
+      <Name>GiveCRM.Admin.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GiveCRM.Admin.Models\GiveCRM.Admin.Models.csproj">
+      <Project>{D00A47FB-4BAC-44C8-B7EF-6A42B268C9A0}</Project>
+      <Name>GiveCRM.Admin.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GiveCRM.Admin.Web\GiveCRM.Admin.Web.csproj">
       <Project>{50A2C082-28AC-46E5-A9CF-C4CC1456B354}</Project>
       <Name>GiveCRM.Admin.Web</Name>

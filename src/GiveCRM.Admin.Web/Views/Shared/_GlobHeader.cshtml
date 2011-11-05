@@ -3,18 +3,6 @@
 		<a class="brand" href="#">GiveCRM</a>
           
 		<div class="pull-right">
-			@if (Request.IsAuthenticated) {
-				<span class="welcome">Welcome <strong>@User.Identity.Name</strong></span>
-				@Html.ActionLink("Log Off", "LogOff", "Account")
-			}
-			else {
-				<!-- TODO(BS) add submit to correct location, use validation, use Razor forms -->
-				<form action="?">
-					<input class="input-small" type="text" name="email" placeholder="Email">
-					<input class="input-small" type="password"name="password" placeholder="Password">
-					<button class="btn" type="submit">Sign in</button>
-				</form>
-			 }
 		</div>
 	</div>
 </div>

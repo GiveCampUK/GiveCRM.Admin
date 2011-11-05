@@ -26,30 +26,26 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <OutputPath>.\sql\release\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
-    <TargetConnectionString>
-    </TargetConnectionString>
-    <TargetDatabase>
-    </TargetDatabase>
+    <TargetConnectionString>Data Source=(local);Integrated Security=True;Pooling=False</TargetConnectionString>
+    <TargetDatabase>GiveCRM_Admin</TargetDatabase>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <SuppressWarnings>
     </SuppressWarnings>
     <DeploymentConfigFile>Properties\Database.sqldeployment</DeploymentConfigFile>
     <SqlCommandVariablesFile>Properties\Database.sqlcmdvars</SqlCommandVariablesFile>
-    <DeployToDatabase>False</DeployToDatabase>
+    <DeployToDatabase>True</DeployToDatabase>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>.\sql\debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
-    <TargetConnectionString>
-    </TargetConnectionString>
-    <TargetDatabase>
-    </TargetDatabase>
+    <TargetConnectionString>Data Source=(local);Integrated Security=True;Pooling=False</TargetConnectionString>
+    <TargetDatabase>GiveCRM_Admin</TargetDatabase>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <SuppressWarnings>
     </SuppressWarnings>
     <DeploymentConfigFile>Properties\Database.sqldeployment</DeploymentConfigFile>
     <SqlCommandVariablesFile>Properties\Database.sqlcmdvars</SqlCommandVariablesFile>
-    <DeployToDatabase>False</DeployToDatabase>
+    <DeployToDatabase>True</DeployToDatabase>
   </PropertyGroup>
   <!--Import the settings-->
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\TeamData\Microsoft.Data.Schema.SqlTasks.targets" />
@@ -143,12 +139,6 @@
       <SubType>Code</SubType>
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="Schema Objects\Database Level Objects\Storage\Files\GiveCRM.Admin.Database_log.sqlfile.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Database Level Objects\Storage\Files\GiveCRM.Admin.Database.sqlfile.sql">
-      <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\aspnet_Users_Index2.index.sql">
       <SubType>Code</SubType>

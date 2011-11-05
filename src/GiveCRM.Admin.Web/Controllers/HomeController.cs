@@ -8,5 +8,10 @@ namespace GiveCRM.Admin.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Holding()
+        {
+            return View();
+        }
     }
 }

@@ -10,9 +10,10 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-USE [GiveCRM.Admin.Database]
+USE [GiveCRM_Admin]
 GO
 
+IF NOT EXISTS (SELECT 1 FROM [dbo].[aspnet_SchemaVersions] WHERE [Feature] = 'common')
 INSERT INTO [dbo].[aspnet_SchemaVersions]
  ([Feature]
  ,[CompatibleSchemaVersion]
@@ -24,6 +25,7 @@ INSERT INTO [dbo].[aspnet_SchemaVersions]
 GO
 
 
+IF NOT EXISTS (SELECT 1 FROM [dbo].[aspnet_SchemaVersions] WHERE [Feature] = 'membership')
 INSERT INTO [dbo].[aspnet_SchemaVersions]
  ([Feature]
  ,[CompatibleSchemaVersion]
