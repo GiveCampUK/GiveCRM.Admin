@@ -64,6 +64,11 @@ namespace GiveCRM.Admin.DataAccess.Test
             var charity = new Charity
                               {
                                   Name = TestName,
+                                  UserId = TestUserId,
+                                  EncryptedPassword = Encoding.UTF8.GetBytes(TestPassword),
+                                  RegisteredCharityNumber = TestRegisteredCharityNumber,
+                                  SubDomain = TestSubDomain,
+                                  Salt = Encoding.UTF8.GetBytes("passwordSalt")
                               };
 
             var target = new Charities();
