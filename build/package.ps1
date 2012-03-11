@@ -6,7 +6,7 @@ Framework "4.0"
 $base_dir = resolve-path .
 $package_dir = "$base_dir\..\package\"
 $src_folder = "$base_dir\..\src"
-$web_package_location = "$src_folder\GiveCRM.Web\obj\release\Package\PackageTmp"
+$web_package_location = "$src_folder\GiveCRM.Admin.Web\obj\release\Package\PackageTmp"
 
 task default -depends Package
 

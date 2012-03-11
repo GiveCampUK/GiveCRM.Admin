@@ -1,5 +1,5 @@
 properties {
-    $sln_file_name = "GiveCRM.sln"
+    $sln_file_name = "GiveCRM.Admin.sln"
 	$configuration = "release"
 }
 
