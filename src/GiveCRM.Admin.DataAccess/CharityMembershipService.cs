@@ -33,7 +33,7 @@ namespace GiveCRM.Admin.DataAccess
             };
             using (var scope = new TransactionScope())
             {
-                var newCharity = CharitiesDataAccess.Insert(charity);
+                var newCharity = CharitiesDataAccess.Save(charity);
                 if (newCharity == null) throw new ArgumentNullException("newCharity");
 
 

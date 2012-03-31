@@ -38,7 +38,7 @@ namespace GiveCRM.Admin.DataAccess.Test
         {
             CreateCharity();
 
-            var actual = new Charities().GetByUserId(TestUserId);
+            var actual = new Charities().GetByUserName(TestUserId);
             Assert.IsNotNull(actual);
         }
 
@@ -50,9 +50,9 @@ namespace GiveCRM.Admin.DataAccess.Test
             target.SubDomain = TestSubDomain;
 
             var data = new Charities();
-            data.Update(target);
+            data.Save(target);
 
-            var actual = data.Get(target.Id);
+            var actual = data.GetById(target.Id);
 
             Assert.AreEqual(TestName, actual.Name);
             Assert.AreEqual(TestRegisteredCharityNumber, actual.RegisteredCharityNumber);
@@ -73,7 +73,7 @@ namespace GiveCRM.Admin.DataAccess.Test
 
             var target = new Charities();
 
-            var actual = target.Insert(charity);
+            var actual = target.Save(charity);
             return actual;
         }
     }

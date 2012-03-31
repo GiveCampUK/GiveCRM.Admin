@@ -2,43 +2,44 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GiveCRM.Admin.BusinessLogic;
 using GiveCRM.Admin.Models;
 using Simple.Data;
 
 namespace GiveCRM.Admin.DataAccess
 {
-    public class Charities
+    public class Charities : ICharityRepository
     {
-        private readonly dynamic _db = Database.OpenNamedConnection("GiveCRMAdmin");
+        private readonly dynamic db = Database.OpenNamedConnection("GiveCRMAdmin");
 
-        public Charity Get(int id)
+        public Charity GetById(int id)
         {
-            return _db.Charity.FindById(id);
+            return db.Charity.FindById(id);
         }
 
-        public IEnumerable<Charity> All()
+        public IEnumerable<Charity> GetAll()
         {
-            return _db.Charity.All().Cast<Charity>();
+            return db.Charity.All();
         }
 
-        public Charity GetByUserId(string userId)
+        public Charity GetByUserName(string userName)
         {
-            return _db.Charity.FindByUserId(userId);
+            return db.Charity.FindByUserId(userName);
         }
 
-        public Charity Insert(Charity charity)
+        public Charity Save(Charity charity)
         {
-            return _db.Charity.Insert(charity);
+            return db.Charity.Upsert(charity);
         }
 
-        public void Update(Charity charity)
+        public bool Delete(Charity charity)
         {
-            _db.Charity.UpdateById(charity);
+            return DeleteById(charity.Id);
         }
 
-        public void Delete(Charity charity)
+        public bool DeleteById(int id)
         {
-            _db.Charity.DeleteById(charity.Id);
+            return db.Charity.DeleteById(id) == 1;
         }
     }
 }
