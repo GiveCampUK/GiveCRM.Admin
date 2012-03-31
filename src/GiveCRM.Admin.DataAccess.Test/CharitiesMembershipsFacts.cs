@@ -90,7 +90,27 @@ namespace GiveCRM.Admin.DataAccess.Test
         [TestFixture]
         public class SaveShould
         {
+            [SetUp]
+            public void SetUp()
+            {
+                TestSetUp();
+            }
 
+            [Test]
+            public void ReturnTheCreatedCharityMembership_WhenTheSaveIsSuccessful()
+            {
+                var charityMembership = new CharityMembership
+                                            {
+                                                CharityId = 30,
+                                                UserName = "test"
+                                            };
+                var charitiesMemberships = new CharitiesMemberships(db);
+                
+                var createdCharityMembership = charitiesMemberships.Save(charityMembership);
+                
+                Assert.That(createdCharityMembership.CharityId, Is.EqualTo(charityMembership.CharityId));
+                Assert.That(createdCharityMembership.UserName, Is.EqualTo(charityMembership.UserName));
+            }
         }
 
         [TestFixture]
