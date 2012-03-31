@@ -1,7 +1,7 @@
 ﻿using GiveCRM.Admin.BusinessLogic;
-using GiveCRM.Admin.DataAccess;
 using GiveCRM.Admin.Web.Controllers;
 using GiveCRM.Admin.Web.Interfaces;
+using GiveCRM.Admin.Web.Services;
 using GiveCRM.Admin.Web.ViewModels.SignUp;
 using MvcContrib.TestHelper;
 using NSubstitute;
@@ -17,6 +17,7 @@ namespace GiveCRM.Admin.Web.Tests
         private IConfiguration configuration;
         private ISignUpQueueingService signUpQueueingService;
         private ICharityMembershipService charityMembershipService;
+        private IMembershipService membershipService;
 
         [SetUp]
         public void SetUp()
@@ -24,12 +25,13 @@ namespace GiveCRM.Admin.Web.Tests
             configuration = Substitute.For<IConfiguration>();
             signUpQueueingService = Substitute.For<ISignUpQueueingService>();
             charityMembershipService = Substitute.For<ICharityMembershipService>();
+            membershipService = Substitute.For<IMembershipService>();
         }
 
         [Test]
         public void SignUp_RedirectsGetToHome()
         {
-            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService);
+            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService, membershipService);
             var result = controller.SignUp();
 
             result.AssertActionRedirect();
@@ -45,8 +47,8 @@ namespace GiveCRM.Admin.Web.Tests
                                                 CharityName = "C",
                                             };
 
-            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService);
-            charityMembershipService.RegisterUserAndCharity(null).ReturnsForAnyArgs(true);
+            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService, membershipService);
+            charityMembershipService.RegisterCharityWithUser(null, null).ReturnsForAnyArgs(true);
             var result = controller.SignUp(requiredInfoViewModel);
             result.AssertActionRedirect().ToAction("Complete");
         }
@@ -61,8 +63,8 @@ namespace GiveCRM.Admin.Web.Tests
                                                 CharityName = "C",
                                             };
 
-            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService);
-            charityMembershipService.RegisterUserAndCharity(null).ReturnsForAnyArgs(false);
+            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService, membershipService);
+            charityMembershipService.RegisterCharityWithUser(null, null).ReturnsForAnyArgs(false);
             var result = controller.SignUp(requiredInfoViewModel);
             
             result.AssertViewRendered();
@@ -71,7 +73,7 @@ namespace GiveCRM.Admin.Web.Tests
         [Test]
         public void Complete_RendersView()
         {
-            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService);
+            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService, membershipService);
             var result = controller.Complete();
             result.AssertViewRendered().WithViewData<CompleteViewModel>();
         }
@@ -79,7 +81,7 @@ namespace GiveCRM.Admin.Web.Tests
         [Test]
         public void StoreAdditionalInfo_RendersView()
         {
-            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService);
+            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService, membershipService);
             var result = controller.StoreAdditionalInfo(new CompleteViewModel());
             result.AssertViewRendered().WithViewData<CompleteViewModel>();
         }
@@ -87,7 +89,7 @@ namespace GiveCRM.Admin.Web.Tests
         [Test]
         public void StartSite_RendersView()
         {
-            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService);
+            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService, membershipService);
             var result = controller.StartSite("");
             result.AssertViewRendered().WithViewData<StartSiteViewModel>();
         }
