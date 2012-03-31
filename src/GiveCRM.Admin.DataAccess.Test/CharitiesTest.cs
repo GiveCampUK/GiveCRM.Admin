@@ -11,6 +11,8 @@ namespace GiveCRM.Admin.DataAccess.Test
     [TestFixture]
     public class CharitiesTest
     {
+        private readonly dynamic db = Database.OpenFile("TestDB.sdf");
+
         const string TestName = "Royal Society for Protection of Tests";
         const string TestUserId = "bob";
         const string TestPassword = "qwertyuiop";
@@ -38,7 +40,7 @@ namespace GiveCRM.Admin.DataAccess.Test
         {
             CreateCharity();
 
-            var actual = new Charities().GetByUserName(TestUserId);
+            var actual = new Charities(db).GetByUserName(TestUserId);
             Assert.IsNotNull(actual);
         }
 
@@ -49,7 +51,7 @@ namespace GiveCRM.Admin.DataAccess.Test
             target.RegisteredCharityNumber = TestRegisteredCharityNumber;
             target.SubDomain = TestSubDomain;
 
-            var data = new Charities();
+            var data = new Charities(db);
             data.Save(target);
 
             var actual = data.GetById(target.Id);
@@ -64,7 +66,7 @@ namespace GiveCRM.Admin.DataAccess.Test
         {
             var charity = CreateCharity();
 
-            var actual = new Charities().GetAll().Single();
+            var actual = new Charities(db).GetAll().Single();
 
             Assert.That(actual.Name, Is.EqualTo(charity.Name));
             Assert.That(actual.UserId, Is.EqualTo(charity.UserId));
@@ -74,7 +76,7 @@ namespace GiveCRM.Admin.DataAccess.Test
             Assert.That(actual.Salt, Is.EqualTo(charity.Salt));
         }
 
-        private static Charity CreateCharity()
+        private Charity CreateCharity()
         {
             var charity = new Charity
                               {
@@ -86,7 +88,7 @@ namespace GiveCRM.Admin.DataAccess.Test
                                   Salt = Encoding.UTF8.GetBytes("passwordSalt")
                               };
 
-            var target = new Charities();
+            var target = new Charities(db);
 
             var actual = target.Save(charity);
             return actual;

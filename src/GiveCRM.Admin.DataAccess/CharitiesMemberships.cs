@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using GiveCRM.Admin.BusinessLogic;
 using GiveCRM.Admin.Models;
-using Simple.Data;
 
 namespace GiveCRM.Admin.DataAccess
 {
@@ -15,11 +14,6 @@ namespace GiveCRM.Admin.DataAccess
         public CharitiesMemberships(dynamic connection)
         {
             db = connection;
-        }
-
-        public CharitiesMemberships() : this((Database)Database.OpenNamedConnection("GiveCRMAdmin"))
-        {
-            // TODO: Delete this constructor.
         }
 
         public CharityMembership GetById(int id)
