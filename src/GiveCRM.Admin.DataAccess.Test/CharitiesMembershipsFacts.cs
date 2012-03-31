@@ -155,7 +155,34 @@ namespace GiveCRM.Admin.DataAccess.Test
         [TestFixture]
         public class DeleteByIdShould
         {
+            private readonly dynamic db = Database.OpenFile("TestDB.sdf");
+            private CharityMembership charityMembership;
 
+            [SetUp]
+            public void SetUp()
+            {
+                db.CharityMembership.DeleteAll();
+
+                charityMembership = db.CharityMembership.Insert(new CharityMembership
+                                                                    {
+                                                                        CharityId = 58,
+                                                                        UserName = "test"
+                                                                    });
+            }
+
+            [Test]
+            public void ReturnTrue_WhenTheDeletionIsSuccessful()
+            {
+                var charitiesMemberships = new CharitiesMemberships(db);
+                Assert.That(charitiesMemberships.DeleteById(charityMembership.Id), Is.True);
+            }
+
+            [Test]
+            public void ReturnFalse_WhenTheDeletionFails()
+            {
+                var charitiesMemberships = new CharitiesMemberships(db);
+                Assert.That(charitiesMemberships.DeleteById(68), Is.False);
+            }
         }
     }
 }
