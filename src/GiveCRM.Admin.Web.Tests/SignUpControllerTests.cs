@@ -1,4 +1,5 @@
-﻿using GiveCRM.Admin.DataAccess;
+﻿using GiveCRM.Admin.BusinessLogic;
+using GiveCRM.Admin.DataAccess;
 using GiveCRM.Admin.Web.Controllers;
 using GiveCRM.Admin.Web.Interfaces;
 using GiveCRM.Admin.Web.ViewModels.SignUp;

@@ -57,13 +57,16 @@
     <Compile Include="Charities.cs" />
     <Compile Include="CharitiesMemberships.cs" />
     <Compile Include="CharityMembershipService.cs" />
-    <Compile Include="ICharityMembershipService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GiveCRM.Admin.BusinessLogic\GiveCRM.Admin.BusinessLogic.csproj">
+      <Project>{85AD022A-DA80-49B4-91ED-1834B005B88D}</Project>
+      <Name>GiveCRM.Admin.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GiveCRM.Admin.Models\GiveCRM.Admin.Models.csproj">
       <Project>{D00A47FB-4BAC-44C8-B7EF-6A42B268C9A0}</Project>
       <Name>GiveCRM.Admin.Models</Name>

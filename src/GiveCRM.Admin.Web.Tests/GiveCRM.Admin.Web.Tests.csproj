@@ -74,6 +74,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GiveCRM.Admin.BusinessLogic\GiveCRM.Admin.BusinessLogic.csproj">
+      <Project>{85AD022A-DA80-49B4-91ED-1834B005B88D}</Project>
+      <Name>GiveCRM.Admin.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GiveCRM.Admin.DataAccess\GiveCRM.Admin.DataAccess.csproj">
       <Project>{5E73464B-0363-49C2-93E8-92B81E564DB0}</Project>
       <Name>GiveCRM.Admin.DataAccess</Name>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Transactions;
 using System.Web.Security;
+using GiveCRM.Admin.BusinessLogic;
 using GiveCRM.Admin.Models;
 
 namespace GiveCRM.Admin.DataAccess
