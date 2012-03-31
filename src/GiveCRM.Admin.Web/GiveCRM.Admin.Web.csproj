@@ -121,7 +121,7 @@
     <Compile Include="Services\AspMembershipService.cs" />
     <Compile Include="Services\IMember.cs" />
     <Compile Include="Services\IMembershipService.cs" />
-    <Compile Include="Services\MembershipCreateStatus.cs" />
+    <Compile Include="Services\UserCreationResult.cs" />
     <Compile Include="ViewModels\SignUp\RequiredInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SignUpNonQueueingService.cs" />

@@ -11,7 +11,6 @@ using GiveCRM.Admin.Web.Interfaces;
 using GiveCRM.Admin.Web.Services;
 using GiveCRM.Admin.Web.ViewModels.SignUp;
 using IConfiguration = GiveCRM.Admin.Web.Interfaces.IConfiguration;
-using MembershipCreateStatus = GiveCRM.Admin.Web.Services.MembershipCreateStatus;
 
 namespace GiveCRM.Admin.Web.Controllers
 {
@@ -72,14 +71,14 @@ namespace GiveCRM.Admin.Web.Controllers
 
             string userIdentifier = registrationInfo.UserIdentifier;
             var userRegistrationStatus = membershipService.CreateUser(userIdentifier, registrationInfo.Password, userIdentifier);
-            if (userRegistrationStatus == MembershipCreateStatus.DuplicateEmail)
+            if (userRegistrationStatus == UserCreationResult.DuplicateEmail)
             {
                 ModelState.AddModelError("UserIdentifier",
                                          "You have already registered with GiveCRM.  Would you like to log in instead?");
                 return View(requiredInfoViewModel);
             }
 
-            if (userRegistrationStatus == MembershipCreateStatus.Success)
+            if (userRegistrationStatus == UserCreationResult.Success)
             {
                 bool result = CreateCharity(registrationInfo);
 

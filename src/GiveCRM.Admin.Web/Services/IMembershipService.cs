@@ -3,6 +3,6 @@
     public interface IMembershipService
     {
         IMember GetUser(string username);
-        MembershipCreateStatus CreateUser(string username, string password, string email);
+        UserCreationResult CreateUser(string username, string password, string email);
     }
 }

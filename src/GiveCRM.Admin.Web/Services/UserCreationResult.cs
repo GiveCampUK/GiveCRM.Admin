@@ -1,6 +1,6 @@
 namespace GiveCRM.Admin.Web.Services
 {
-    public enum MembershipCreateStatus
+    public enum UserCreationResult
     {
         Success,
         DuplicateEmail,
