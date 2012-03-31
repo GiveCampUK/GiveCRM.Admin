@@ -13,7 +13,7 @@ namespace GiveCRM.Admin.DataAccess.Test
         [SetUp]
         public void SetUp()
         {
-            Database.OpenNamedConnection("GiveCRMAdmin").Charities.DeleteAll();
+            Database.OpenFile("TestDB.sdf").CharitiesMemberships.DeleteAll();
         }
 
         [TestFixture]

@@ -21,7 +21,7 @@ namespace GiveCRM.Admin.DataAccess.Test
         [SetUp]
         public void SetUp()
         {
-            Database.OpenNamedConnection("GiveCRMAdmin").Charity.DeleteAll();
+            Database.OpenFile("TestDB.sdf").Charity.DeleteAll();
         }
 
         [Test]

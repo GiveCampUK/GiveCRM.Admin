@@ -43,7 +43,7 @@ namespace GiveCRM.Admin.DataAccess
                     CharityId = newCharity.Id,
                     UserName = user.UserName
                 };
-                var newCharityMembership = CharitiesMembershipsDataAccess.Insert(charityMembership);
+                var newCharityMembership = CharitiesMembershipsDataAccess.Save(charityMembership);
 
                 if (createStatus == MembershipCreateStatus.Success && newCharityMembership != null)
                 {
