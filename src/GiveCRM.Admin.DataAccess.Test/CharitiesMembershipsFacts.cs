@@ -9,7 +9,7 @@ using Simple.Data;
 namespace GiveCRM.Admin.DataAccess.Test
 {
     [TestFixture]
-    public class CharitiesMembershipRepositoryFacts
+    public class CharitiesMembershipsFacts
     {
         [TestFixture]
         public class GetAllShould
