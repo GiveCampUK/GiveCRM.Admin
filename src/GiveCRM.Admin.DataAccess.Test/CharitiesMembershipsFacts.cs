@@ -11,20 +11,15 @@ namespace GiveCRM.Admin.DataAccess.Test
     [TestFixture]
     public class CharitiesMembershipsFacts
     {
-        private static readonly dynamic db = Database.OpenFile("TestDB.sdf");
-
-        private static void TestSetUp()
-        {
-            db.CharityMembership.DeleteAll();
-        }
-
         [TestFixture]
         public class GetAllShould
         {
+            private readonly dynamic db = Database.OpenFile("TestDB.sdf");
+
             [SetUp]
             public void Setup()
             {
-                TestSetUp();
+                db.CharityMembership.DeleteAll();
             }
 
             [Test]
@@ -54,6 +49,8 @@ namespace GiveCRM.Admin.DataAccess.Test
         [TestFixture]
         public class GetByIdShould
         {
+            private readonly dynamic db = Database.OpenFile("TestDB.sdf");
+
             [SetUp]
             public void SetUp()
             {
@@ -90,10 +87,12 @@ namespace GiveCRM.Admin.DataAccess.Test
         [TestFixture]
         public class SaveShould
         {
+            private readonly dynamic db = Database.OpenFile("TestDB.sdf");
+
             [SetUp]
             public void SetUp()
             {
-                TestSetUp();
+                db.CharityMembership.DeleteAll();
             }
 
             [Test]
@@ -116,7 +115,41 @@ namespace GiveCRM.Admin.DataAccess.Test
         [TestFixture]
         public class DeleteShould
         {
+            private readonly dynamic db = Database.OpenFile("TestDB.sdf");
+            private CharityMembership charityMembership;
+            
+            [SetUp]
+            public void SetUp()
+            {
+                db.CharityMembership.DeleteAll();
 
+                charityMembership = db.CharityMembership.Insert(new CharityMembership
+                                                                    {
+                                                                        CharityId = 58,
+                                                                        UserName = "test"
+                                                                    });
+            }
+
+            [Test]
+            public void ReturnTrue_WhenTheDeletionIsSuccessful()
+            {
+                var charitiesMemberships = new CharitiesMemberships(db);
+                Assert.That(charitiesMemberships.Delete(charityMembership), Is.True);
+            }
+
+            [Test]
+            public void ReturnFalse_WhenTheDeletionFails()
+            {
+                var nonExistentCharityMembership = new CharityMembership
+                                                       {
+                                                           Id = 4096,
+                                                           CharityId = 9612,
+                                                           UserName = "test"
+                                                       };
+                var charitiesMemberships = new CharitiesMemberships(db);
+
+                Assert.That(charitiesMemberships.Delete(nonExistentCharityMembership), Is.False);
+            }
         }
 
         [TestFixture]

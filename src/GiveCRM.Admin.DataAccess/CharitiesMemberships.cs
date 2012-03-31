@@ -49,7 +49,7 @@ namespace GiveCRM.Admin.DataAccess
 
         public bool DeleteById(int id)
         {
-            return db.CharityMembership.DeleteById(id);
+            return db.CharityMembership.DeleteById(id) == 1;
         }
     }
 }
