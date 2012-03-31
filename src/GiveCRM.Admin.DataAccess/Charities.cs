@@ -29,7 +29,7 @@ namespace GiveCRM.Admin.DataAccess
 
         public IEnumerable<Charity> GetAll()
         {
-            return db.Charity.All();
+            return db.Charity.All().Cast<Charity>();
         }
 
         public Charity GetByUserName(string userName)

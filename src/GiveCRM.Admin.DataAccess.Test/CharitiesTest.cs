@@ -59,6 +59,21 @@ namespace GiveCRM.Admin.DataAccess.Test
             Assert.AreEqual(TestSubDomain, actual.SubDomain);
         }
 
+        [Test]
+        public void TestGetAll()
+        {
+            var charity = CreateCharity();
+
+            var actual = new Charities().GetAll().Single();
+
+            Assert.That(actual.Name, Is.EqualTo(charity.Name));
+            Assert.That(actual.UserId, Is.EqualTo(charity.UserId));
+            Assert.That(actual.EncryptedPassword, Is.EqualTo(charity.EncryptedPassword));
+            Assert.That(actual.RegisteredCharityNumber, Is.EqualTo(charity.RegisteredCharityNumber));
+            Assert.That(actual.SubDomain, Is.EqualTo(charity.SubDomain));
+            Assert.That(actual.Salt, Is.EqualTo(charity.Salt));
+        }
+
         private static Charity CreateCharity()
         {
             var charity = new Charity
