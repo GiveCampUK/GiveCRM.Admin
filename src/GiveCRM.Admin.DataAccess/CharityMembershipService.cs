@@ -8,18 +8,19 @@ namespace GiveCRM.Admin.DataAccess
 {
     public class CharityMembershipService : ICharityMembershipService
     {
-        private readonly Charities CharitiesDataAccess;
+        private readonly ICharityRepository charityRepository;
         private readonly ICharitiesMembershipRepository charitiesMembershipRepository;
 
-        public CharityMembershipService(ICharitiesMembershipRepository charitiesMembershipRepository)
+        public CharityMembershipService(ICharityRepository charityRepository, ICharitiesMembershipRepository charitiesMembershipRepository)
         {
+            if (charityRepository == null) throw new ArgumentNullException("charityRepository");
             if (charitiesMembershipRepository == null)
             {
                 throw new ArgumentNullException("charitiesMembershipRepository");
             }
 
+            this.charityRepository = charityRepository;
             this.charitiesMembershipRepository = charitiesMembershipRepository;
-            CharitiesDataAccess = new Charities();
         }
 
         public bool RegisterUserAndCharity(RegistrationInfo registrationInfo)
@@ -33,7 +34,7 @@ namespace GiveCRM.Admin.DataAccess
             };
             using (var scope = new TransactionScope())
             {
-                var newCharity = CharitiesDataAccess.Save(charity);
+                var newCharity = charityRepository.Save(charity);
                 if (newCharity == null) throw new ArgumentNullException("newCharity");
 
 
