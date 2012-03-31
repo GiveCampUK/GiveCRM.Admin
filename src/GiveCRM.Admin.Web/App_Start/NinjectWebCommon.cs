@@ -54,16 +54,8 @@ namespace GiveCRM.Admin.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(a =>
-            {
-                a.FromThisAssembly();
-                a.FromAssembliesMatching("GiveCRM.*.dll").SelectAllClasses().BindWith<RegexBindingGenerator>();
-
-                //a.AutoLoadModules();
-                //a.BindWithDefaultConventions();
-                //a.BindWith(new RegexBindingGenerator("(I)(?<name>.+)(Repository)"));
-                //a.BindWith(new GenericBindingGenerator(typeof(IRepository<>)));
-            });         
+            kernel.Bind(a => a.FromAssembliesMatching("GiveCRM.*.dll").SelectAllClasses().BindAllInterfaces().
+                                 Configure(b => b.InRequestScope()));         
         }        
     }
 }

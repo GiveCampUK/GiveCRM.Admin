@@ -3,7 +3,7 @@ using GiveCRM.Admin.Web.Interfaces;
 
 namespace GiveCRM.Admin.Web.ViewModels.SignUp
 {
-    public class CompleteViewModel : IAdditionalInfo, IConfiguration
+    public class CompleteViewModel
     {
         //IAdditionalInfo
         public string UserName { get; set; }
@@ -11,7 +11,6 @@ namespace GiveCRM.Admin.Web.ViewModels.SignUp
         [Required(ErrorMessage = "Please enter a subdomain")]
         public string SubDomain { get; set; }
 
-        //IConfiguration
         public string BaseDomain { get; set; }
         public string ExcelTemplatePath { get; set; }
         public string CrmTestUrl { get; set; }
