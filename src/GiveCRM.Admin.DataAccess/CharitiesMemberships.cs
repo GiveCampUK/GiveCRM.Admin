@@ -10,26 +10,36 @@ namespace GiveCRM.Admin.DataAccess
 {
     public class CharitiesMemberships : ICharitiesMembershipRepository
     {
-        private readonly dynamic _db = Database.OpenNamedConnection("GiveCRMAdmin");
+        private readonly dynamic db;
+
+        public CharitiesMemberships(dynamic connection)
+        {
+            db = connection;
+        }
+
+        public CharitiesMemberships() : this((Database)Database.OpenNamedConnection("GiveCRMAdmin"))
+        {
+            // TODO: Delete this constructor.
+        }
 
         public CharityMembership GetById(int id)
         {
-            return _db.CharityMembership.FindById(id);
+            return db.CharityMembership.FindById(id);
         }
 
         public IEnumerable<CharityMembership> GetAll()
         {
-            return _db.CharityMembership.All().Cast<CharityMembership>();
+            return db.CharityMembership.All().Cast<CharityMembership>();
         }
 
         public CharityMembership GetByUserId(string userId)
         {
-            return _db.CharityMembership.FindByUserId(userId);
+            return db.CharityMembership.FindByUserId(userId);
         }
 
         public CharityMembership Save(CharityMembership charityMembership)
         {
-            return _db.CharityMembership.Upsert(charityMembership);
+            return db.CharityMembership.Upsert(charityMembership);
         }
 
         public bool Delete(CharityMembership charityMembership)
@@ -39,7 +49,7 @@ namespace GiveCRM.Admin.DataAccess
 
         public bool DeleteById(int id)
         {
-            return _db.CharityMembership.DeleteById(id);
+            return db.CharityMembership.DeleteById(id);
         }
     }
 }
