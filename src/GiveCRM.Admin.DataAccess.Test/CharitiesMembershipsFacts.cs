@@ -22,7 +22,8 @@ namespace GiveCRM.Admin.DataAccess.Test
             [Test]
             public void ReturnAnEmptyCollection_WhenThereAreNoCharityMembershipsDefined()
             {
-                
+                var allCharitiesMemberships = new CharitiesMemberships().GetAll();
+                Assert.That(allCharitiesMemberships, Is.Empty);
             }
         }
 
