@@ -1,3 +1,6 @@
+
+using System.Linq;
+
 [assembly: WebActivator.PreApplicationStartMethod(typeof(GiveCRM.Admin.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(GiveCRM.Admin.Web.App_Start.NinjectWebCommon), "Stop")]
 
@@ -5,6 +8,8 @@ namespace GiveCRM.Admin.Web.App_Start
 {
     using System;
     using System.Web;
+
+    using BusinessLogic;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
@@ -54,8 +59,10 @@ namespace GiveCRM.Admin.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(a => a.FromAssembliesMatching("GiveCRM.*.dll").SelectAllClasses().BindAllInterfaces().
-                                 Configure(b => b.InRequestScope()));         
+            kernel.Bind(a => a.FromAssembliesMatching("GiveCRM.*.dll")
+                              .SelectAllClasses()
+                              .BindAllInterfaces()
+                              .Configure(bind => bind.InRequestScope()));
         }        
     }
 }

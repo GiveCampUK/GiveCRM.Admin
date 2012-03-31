@@ -40,8 +40,8 @@ namespace GiveCRM.Admin.DataAccess
 
                 // Attempt to register the user
                 MembershipCreateStatus createStatus;
-                Membership.CreateUser(registrationInfo.UserIdentifier, registrationInfo.Password, registrationInfo.UserIdentifier, null, null, true, null, out createStatus);
-                var user = Membership.GetUser(registrationInfo.UserIdentifier);
+                var user = Membership.CreateUser(registrationInfo.UserIdentifier, registrationInfo.Password, registrationInfo.UserIdentifier, null, null, true, null, out createStatus);
+                
                 if (user == null) throw new ArgumentNullException("user");
 
                 var charityMembership = new CharityMembership

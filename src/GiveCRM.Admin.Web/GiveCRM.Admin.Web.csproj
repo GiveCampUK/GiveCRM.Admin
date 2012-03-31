@@ -121,7 +121,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SignUpNonQueueingService.cs" />
     <Compile Include="ViewModels\SignUp\CompleteViewModel.cs" />
-    <Compile Include="Interfaces\IAdditionalInfo.cs" />
     <Compile Include="ViewModels\SignUp\EmailViewModel.cs" />
     <Compile Include="ViewModels\SignUp\StartSiteViewModel.cs" />
   </ItemGroup>

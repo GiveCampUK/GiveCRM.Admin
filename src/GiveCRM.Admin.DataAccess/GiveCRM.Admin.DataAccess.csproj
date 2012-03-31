@@ -59,8 +59,11 @@
   <ItemGroup>
     <Compile Include="Charities.cs" />
     <Compile Include="CharitiesMemberships.cs" />
+    <Compile Include="CharityMembershipRepositoryFactory.cs" />
     <Compile Include="CharityMembershipService.cs" />
+    <Compile Include="CharityRepositoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryFactoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GiveCRM.Admin.BusinessLogic\GiveCRM.Admin.BusinessLogic.csproj">
