@@ -10,7 +10,17 @@ namespace GiveCRM.Admin.DataAccess
 {
     public class Charities : ICharityRepository
     {
-        private readonly dynamic db = Database.OpenNamedConnection("GiveCRMAdmin");
+        private readonly dynamic db;
+
+        public Charities(dynamic db)
+        {
+            this.db = db;
+        }
+
+        public Charities() : this((Database)Database.OpenNamedConnection("GiveCRMAdmin"))
+        {
+            // TODO: Delete this constructor
+        }
 
         public Charity GetById(int id)
         {
