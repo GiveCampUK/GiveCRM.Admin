@@ -48,7 +48,6 @@
     <Compile Include="ICharityMembershipService.cs" />
     <Compile Include="ICharityRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="IRepositoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
