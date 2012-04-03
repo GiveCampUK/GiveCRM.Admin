@@ -55,13 +55,15 @@ namespace GiveCRM.Admin.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<string>().ToMethod(_ => "GiveCRMAdmin");
+
             kernel.Bind<MembershipProvider>().ToMethod(_ => Membership.Provider).InRequestScope();
             kernel.Bind<MembershipUser>().ToSelf().InRequestScope();
-
+            
             kernel.Bind(a => a.FromAssembliesMatching("GiveCRM.*.dll")
                               .SelectAllClasses()
                               .BindAllInterfaces()
                               .Configure(bind => bind.InRequestScope()));
-        }        
+        }
     }
 }
