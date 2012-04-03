@@ -66,6 +66,7 @@
     <Compile Include="CharitiesMembershipsFacts.cs" />
     <Compile Include="CharitiesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleDataFileDatabaseProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

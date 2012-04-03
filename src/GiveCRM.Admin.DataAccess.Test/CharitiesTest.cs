@@ -11,7 +11,7 @@ namespace GiveCRM.Admin.DataAccess.Test
     [TestFixture]
     public class CharitiesTest
     {
-        private readonly dynamic db = Database.OpenFile("TestDB.sdf");
+        private readonly IDatabaseProvider db = new SimpleDataFileDatabaseProvider();
 
         const string TestName = "Royal Society for Protection of Tests";
         const string TestUserId = "bob";
@@ -23,7 +23,7 @@ namespace GiveCRM.Admin.DataAccess.Test
         [SetUp]
         public void SetUp()
         {
-            Database.OpenFile("TestDB.sdf").Charity.DeleteAll();
+            db.GetDatabase().Charity.DeleteAll();
         }
 
         [Test]
