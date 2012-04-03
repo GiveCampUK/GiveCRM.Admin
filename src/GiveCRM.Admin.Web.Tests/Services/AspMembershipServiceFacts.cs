@@ -61,17 +61,43 @@ namespace GiveCRM.Admin.Web.Tests.Services
             [Test]
             public void ReturnTheSpecifiedUser_WhenTheUsernameIsValidForARegisteredUser()
             {
+                // Arrange
                 const string username = "valid.user";
 
-                var membershipProvider = Substitute.For<MembershipProvider>();
                 var validUser = Substitute.For<MembershipUser>();
                 validUser.UserName.Returns(username);
+                
+                var membershipProvider = Substitute.For<MembershipProvider>();
                 membershipProvider.GetUser(username, false).Returns(validUser);
+                
                 var membership = new AspMembershipService(membershipProvider);
 
+                // Act
                 var user = membership.GetUser(username);
 
+                // Assert
                 Assert.That(user.UserName, Is.EqualTo(validUser.UserName));
+            }
+
+            [Test]
+            public void CallAspMembershipProviderGetUser()
+            {
+                // Arrange
+                const string username = "valid.user";
+
+                var validUser = Substitute.For<MembershipUser>();
+                validUser.UserName.Returns(username);
+                
+                var membershipProvider = Substitute.For<MembershipProvider>();
+                membershipProvider.GetUser(username, false).Returns(validUser);
+
+                var membership = new AspMembershipService(membershipProvider);
+
+                // Act
+                membership.GetUser(username);
+
+                // Assert
+                membershipProvider.Received().GetUser(username, false);
             }
         }
 
