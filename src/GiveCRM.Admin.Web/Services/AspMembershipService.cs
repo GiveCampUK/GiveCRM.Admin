@@ -19,7 +19,8 @@ namespace GiveCRM.Admin.Web.Services
 
         public IMember GetUser(string username)
         {
-            return new AspMembershipMember(membershipProvider.GetUser(username, false));
+            var aspMembershipUser = membershipProvider.GetUser(username, false);
+            return aspMembershipUser == null ? null : new AspMembershipMember(aspMembershipUser);
         }
 
         public UserCreationResult CreateUser(string username, string password, string email)
