@@ -134,24 +134,26 @@ namespace GiveCRM.Admin.Web.Tests.Services
             public void CallAspMembershipProviderCreateUser()
             {
                 var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.Success);
-                MembershipCreateStatus membershipCreateStatus;
                 var membershipService = new AspMembershipService(membershipProvider);
+
                 membershipService.CreateUser(Username, Password, Email);
 
-                membershipProvider.Received().CreateUser(Username, Password, Email, string.Empty, string.Empty, 
+                MembershipCreateStatus membershipCreateStatus;
+                membershipProvider.Received().CreateUser(Username, Password, Email, null, null, 
                                                          true, Arg.Any<Guid>(), out membershipCreateStatus);
             }
 
-            private static MembershipProvider CreateMockMembershipProvider(MembershipCreateStatus membershipCreateStatus)
+            private static MembershipProvider CreateMockMembershipProvider(MembershipCreateStatus expectedCreationResult)
             {
                 var membershipProvider = Substitute.For<MembershipProvider>();
                 var membershipUser = Substitute.For<MembershipUser>();
-                MembershipCreateStatus returnedMembershipCreateStatus;
-                membershipProvider.CreateUser(Username, Password, Email, string.Empty, string.Empty, true,
-                                              Guid.NewGuid(), out returnedMembershipCreateStatus)
+
+                MembershipCreateStatus membershipCreateStatus;
+                membershipProvider.CreateUser(Username, Password, Email, null, null, true,
+                                              Arg.Any<Guid>(), out membershipCreateStatus)
                     .Returns(@params =>
                                  {
-                                     @params[7] = membershipCreateStatus;
+                                     @params[7] = expectedCreationResult;
                                      return membershipUser;
                                  });
                 return membershipProvider;
