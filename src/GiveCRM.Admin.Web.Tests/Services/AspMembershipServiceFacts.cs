@@ -250,6 +250,16 @@ namespace GiveCRM.Admin.Web.Tests.Services
             }
 
             [Test]
+            public void ThrowsAnArgumentException_WhenAnUnknownMembershipCreateStatusIsReturnedByTheUnderlyingProvider()
+            {
+                var membershipProvider = CreateMockMembershipProvider((MembershipCreateStatus)(Int32.MaxValue));
+                var membershipService = new AspMembershipService(membershipProvider);
+
+                Assert.That(Enum.IsDefined(typeof(MembershipCreateStatus), Int32.MaxValue), Is.False);
+                Assert.That(() => membershipService.CreateUser(Username, Password, Email), Throws.ArgumentException);
+            }
+
+            [Test]
             public void CallAspMembershipProviderCreateUser()
             {
                 var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.Success);
