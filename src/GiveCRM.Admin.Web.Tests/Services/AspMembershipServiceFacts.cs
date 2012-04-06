@@ -104,53 +104,57 @@ namespace GiveCRM.Admin.Web.Tests.Services
         [TestFixture]
         public class CreateUserShould
         {
+            const string Username = "foo";
+            const string Password = "bar123";
+            const string Email = "foo@gmail.com";
+
             [Test]
             public void ReturnSuccess_WhenTheUserIsCreatedSuccessfully()
             {
-                const string username = "foo";
-                const string password = "bar123";
-                const string email = "foo@gmail.com";
-
-                var membershipProvider = Substitute.For<MembershipProvider>();
-                var membershipUser = Substitute.For<MembershipUser>();
-                MembershipCreateStatus membershipCreateStatus;
-                membershipProvider.CreateUser(username, password, email, string.Empty, string.Empty, true, 
-                                              Guid.NewGuid(), out membershipCreateStatus)
-                                  .Returns(@params =>
-                                  {
-                                      @params[7] = MembershipCreateStatus.Success;
-                                      return membershipUser;
-                                  });
-
-                var membership = new AspMembershipService(membershipProvider);
-                var result = membership.CreateUser(username, password, email);
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.Success);
+                var membershipService = new AspMembershipService(membershipProvider);
+                
+                var result = membershipService.CreateUser(Username, Password, Email);
 
                 Assert.That(result, Is.EqualTo(UserCreationResult.Success));
             }
 
             [Test]
-            public void CallAspMembershipProviderCreateUser() 
+            public void ReturnsDuplicateEmail_WhenTheEmailAddressIsAlreadyRegistered()
             {
-                const string username = "foo";
-                const string password = "bar123";
-                const string email = "foo@gmail.com";
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.DuplicateEmail);
+                var membershipService = new AspMembershipService(membershipProvider);
                 
+                var result = membershipService.CreateUser(Username, Password, Email);
+
+                Assert.That(result, Is.EqualTo(UserCreationResult.DuplicateEmail));
+            }
+
+            [Test]
+            public void CallAspMembershipProviderCreateUser()
+            {
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.Success);
+                MembershipCreateStatus membershipCreateStatus;
+                var membershipService = new AspMembershipService(membershipProvider);
+                membershipService.CreateUser(Username, Password, Email);
+
+                membershipProvider.Received().CreateUser(Username, Password, Email, string.Empty, string.Empty, 
+                                                         true, Arg.Any<Guid>(), out membershipCreateStatus);
+            }
+
+            private static MembershipProvider CreateMockMembershipProvider(MembershipCreateStatus membershipCreateStatus)
+            {
                 var membershipProvider = Substitute.For<MembershipProvider>();
                 var membershipUser = Substitute.For<MembershipUser>();
-                MembershipCreateStatus membershipCreateStatus;
-                membershipProvider.CreateUser(username, password, email, string.Empty, string.Empty, true,
-                                              Arg.Any<Guid>(), out membershipCreateStatus)
-                                  .Returns(@params =>
-                                  {
-                                      @params[7] = MembershipCreateStatus.Success;
-                                      return membershipUser;
-                                  });
-
-                var membership = new AspMembershipService(membershipProvider);
-                membership.CreateUser(username, password, email);
-
-                membershipProvider.Received().CreateUser(username, password, email, string.Empty, string.Empty, 
-                                                         true, Arg.Any<Guid>(), out membershipCreateStatus);
+                MembershipCreateStatus returnedMembershipCreateStatus;
+                membershipProvider.CreateUser(Username, Password, Email, string.Empty, string.Empty, true,
+                                              Guid.NewGuid(), out returnedMembershipCreateStatus)
+                    .Returns(@params =>
+                                 {
+                                     @params[7] = membershipCreateStatus;
+                                     return membershipUser;
+                                 });
+                return membershipProvider;
             }
         }
     }
