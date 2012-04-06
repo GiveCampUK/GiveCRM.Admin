@@ -54,7 +54,45 @@ namespace GiveCRM.Admin.Web.Tests
         }
 
         [Test]
-        public void SignUp_WithUnsuccessfulStore_RendersView()
+        public void SignUp_WithUnsuccessfulUserCreation_RendersView()
+        {
+            var requiredInfoViewModel = new RequiredInfoViewModel
+                                            {
+                                                UserIdentifier = "A",
+                                                Password = "B",
+                                                CharityName = "C"
+                                            };
+
+            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService,
+                                                  membershipService);
+            membershipService.CreateUser(string.Empty, string.Empty, string.Empty)
+                             .ReturnsForAnyArgs(UserCreationResult.DuplicateUsername);
+            var result = controller.SignUp(requiredInfoViewModel);
+
+            result.AssertViewRendered();
+        }
+
+        [Test]
+        public void SignUp_WithDuplicateEmail_RendersView()
+        {
+            var requiredInfoViewModel = new RequiredInfoViewModel
+                                            {
+                                                UserIdentifier = "A",
+                                                Password = "B",
+                                                CharityName = "C"
+                                            };
+
+            var controller = new SignUpController(configuration, signUpQueueingService, charityMembershipService,
+                                                  membershipService);
+            membershipService.CreateUser(string.Empty, string.Empty, string.Empty)
+                             .ReturnsForAnyArgs(UserCreationResult.DuplicateEmail);
+            var result = controller.SignUp(requiredInfoViewModel);
+
+            result.AssertViewRendered();
+        }
+
+        [Test]
+        public void SignUp_WithUnsuccessfulCharityCreation_RendersView()
         {
             var requiredInfoViewModel = new RequiredInfoViewModel
                                             {
