@@ -50,6 +50,10 @@ namespace GiveCRM.Admin.Web.Services
                     return UserCreationResult.InvalidEmail;
                 case MembershipCreateStatus.InvalidQuestion:
                 case MembershipCreateStatus.InvalidAnswer:
+                case MembershipCreateStatus.UserRejected:
+                case MembershipCreateStatus.ProviderError:
+                case MembershipCreateStatus.InvalidProviderUserKey:
+                case MembershipCreateStatus.DuplicateProviderUserKey:
                     return UserCreationResult.UnexpectedFailure;
                 default:
                     throw new ArgumentException(

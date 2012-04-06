@@ -184,6 +184,72 @@ namespace GiveCRM.Admin.Web.Tests.Services
             }
 
             [Test]
+            public void ReturnUnexpectedFailure_WhenInvalidQuestionStatusIsReturnedByTheUnderlyingProvider()
+            {
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.InvalidQuestion);
+                var membershipService = new AspMembershipService(membershipProvider);
+
+                var result = membershipService.CreateUser(Username, Password, Email);
+
+                Assert.That(result, Is.EqualTo(UserCreationResult.UnexpectedFailure));
+            }
+
+            [Test]
+            public void ReturnUnexpectedFailure_WhenInvalidAnswerStatusIsReturnedByTheUnderlyingProvider()
+            {
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.InvalidAnswer);
+                var membershipService = new AspMembershipService(membershipProvider);
+
+                var result = membershipService.CreateUser(Username, Password, Email);
+
+                Assert.That(result, Is.EqualTo(UserCreationResult.UnexpectedFailure));
+            }
+
+            [Test]
+            public void ReturnUnexpectedFailure_WhenUserRejectedStatusIsReturnedByTheUnderlyingProvider()
+            {
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.UserRejected);
+                var membershipService = new AspMembershipService(membershipProvider);
+
+                var result = membershipService.CreateUser(Username, Password, Email);
+
+                Assert.That(result, Is.EqualTo(UserCreationResult.UnexpectedFailure));
+            }
+
+            [Test]
+            public void ReturnUnexpectedFailure_WhenProviderErrorStatusIsReturnedByTheUnderlyingProvider()
+            {
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.ProviderError);
+                var membershipService = new AspMembershipService(membershipProvider);
+
+                var result = membershipService.CreateUser(Username, Password, Email);
+
+                Assert.That(result, Is.EqualTo(UserCreationResult.UnexpectedFailure));
+            }
+
+            [Test]
+            public void ReturnUnexpectedFailure_WhenInvalidProviderUserKeyStatusIsReturnedByTheUnderlyingProvider()
+            {
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.InvalidProviderUserKey);
+                var membershipService = new AspMembershipService(membershipProvider);
+
+                var result = membershipService.CreateUser(Username, Password, Email);
+
+                Assert.That(result, Is.EqualTo(UserCreationResult.UnexpectedFailure));
+            }
+
+            [Test]
+            public void ReturnUnexpectedFailure_WhenDuplicateProviderUserKeyStatusIsReturnedByTheUnderlyingProvider()
+            {
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.DuplicateProviderUserKey);
+                var membershipService = new AspMembershipService(membershipProvider);
+
+                var result = membershipService.CreateUser(Username, Password, Email);
+
+                Assert.That(result, Is.EqualTo(UserCreationResult.UnexpectedFailure));
+            }
+
+            [Test]
             public void CallAspMembershipProviderCreateUser()
             {
                 var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.Success);
