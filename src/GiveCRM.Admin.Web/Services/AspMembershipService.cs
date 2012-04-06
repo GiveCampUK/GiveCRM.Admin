@@ -26,7 +26,7 @@ namespace GiveCRM.Admin.Web.Services
         public UserCreationResult CreateUser(string username, string password, string email)
         {
             MembershipCreateStatus providerCreateStatus;
-            membershipProvider.CreateUser(username, password, email, string.Empty, string.Empty, true, new object(),
+            membershipProvider.CreateUser(username, password, email, string.Empty, string.Empty, true, Guid.NewGuid(),
                                           out providerCreateStatus);
 
             return MapProviderCreateStatus(providerCreateStatus);
