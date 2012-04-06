@@ -122,10 +122,12 @@ namespace GiveCRM.Admin.Web.Tests.Services
             [Test]
             public void ReturnDuplicateEmail_WhenTheEmailAddressIsAlreadyRegistered()
             {
-                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.DuplicateEmail);
+                const string duplicateEmail = "duplicate@gmail.com";
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.DuplicateEmail,
+                                                                      email:duplicateEmail);
                 var membershipService = new AspMembershipService(membershipProvider);
-                
-                var result = membershipService.CreateUser(Username, Password, Email);
+
+                var result = membershipService.CreateUser(Username, Password, duplicateEmail);
 
                 Assert.That(result, Is.EqualTo(UserCreationResult.DuplicateEmail));
             }
@@ -133,12 +135,26 @@ namespace GiveCRM.Admin.Web.Tests.Services
             [Test]
             public void ReturnDuplicateUsername_WhenTheUsernameIsAlreadyTaken()
             {
-                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.DuplicateUserName);
+                const string duplicateUsername = "duplicate";
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.DuplicateUserName, 
+                                                                      username:duplicateUsername);
                 var membershipService = new AspMembershipService(membershipProvider);
 
-                var result = membershipService.CreateUser(Username, Password, Email);
+                var result = membershipService.CreateUser(duplicateUsername, Password, Email);
 
                 Assert.That(result, Is.EqualTo(UserCreationResult.DuplicateUsername));
+            }
+
+            [Test]
+            public void ReturnInvalidEmail_WhenTheEmailAddressIsNotValid()
+            {
+                const string invalidEmail = "slkfgj";
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.InvalidEmail, email:invalidEmail);
+                var membershipService = new AspMembershipService(membershipProvider);
+
+                var result = membershipService.CreateUser(Username, Password, invalidEmail);
+
+                Assert.That(result, Is.EqualTo(UserCreationResult.InvalidEmail));
             }
 
             [Test]
@@ -154,13 +170,13 @@ namespace GiveCRM.Admin.Web.Tests.Services
                                                          true, Arg.Any<Guid>(), out membershipCreateStatus);
             }
 
-            private static MembershipProvider CreateMockMembershipProvider(MembershipCreateStatus expectedCreationResult)
+            private static MembershipProvider CreateMockMembershipProvider(MembershipCreateStatus expectedCreationResult, string username = Username, string password = Password, string email = Email)
             {
                 var membershipProvider = Substitute.For<MembershipProvider>();
                 var membershipUser = Substitute.For<MembershipUser>();
 
                 MembershipCreateStatus membershipCreateStatus;
-                membershipProvider.CreateUser(Username, Password, Email, null, null, true,
+                membershipProvider.CreateUser(username, password, email, null, null, true,
                                               Arg.Any<Guid>(), out membershipCreateStatus)
                     .Returns(@params =>
                                  {
