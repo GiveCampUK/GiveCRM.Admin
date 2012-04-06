@@ -50,7 +50,7 @@ namespace GiveCRM.Admin.Web.Services
                     return UserCreationResult.InvalidEmail;
                 case MembershipCreateStatus.InvalidQuestion:
                 case MembershipCreateStatus.InvalidAnswer:
-                    return UserCreationResult.Success;
+                    return UserCreationResult.UnexpectedFailure;
                 default:
                     throw new ArgumentException(
                         string.Format("Unsupported value of System.Web.Security.MembershipCreateStatus {0}",

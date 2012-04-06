@@ -39,6 +39,12 @@ namespace GiveCRM.Admin.Web.Services
         /// The password provided is not valid.  For example, it might only
         /// contain lowercase letters.
         /// </summary>
-        InvalidPassword
+        InvalidPassword,
+
+        /// <summary>
+        /// An unexpected failure occurred.  For example, the underlying Membership
+        /// Provider is returning an InvalidQuestion status.
+        /// </summary>
+        UnexpectedFailure
     }
 }
