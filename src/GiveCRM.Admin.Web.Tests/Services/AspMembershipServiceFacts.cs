@@ -127,7 +127,30 @@ namespace GiveCRM.Admin.Web.Tests.Services
 
                 Assert.That(result, Is.EqualTo(UserCreationResult.Success));
             }
+
+            [Test]
+            public void CallAspMembershipProviderCreateUser() 
+            {
+                const string username = "foo";
+                const string password = "bar123";
+                const string email = "foo@gmail.com";
                 
+                var membershipProvider = Substitute.For<MembershipProvider>();
+                var membershipUser = Substitute.For<MembershipUser>();
+                MembershipCreateStatus membershipCreateStatus;
+                membershipProvider.CreateUser(username, password, email, string.Empty, string.Empty, true,
+                                              Arg.Any<Guid>(), out membershipCreateStatus)
+                                  .Returns(@params =>
+                                  {
+                                      @params[7] = MembershipCreateStatus.Success;
+                                      return membershipUser;
+                                  });
+
+                var membership = new AspMembershipService(membershipProvider);
+                membership.CreateUser(username, password, email);
+
+                membershipProvider.Received().CreateUser(username, password, email, string.Empty, string.Empty, 
+                                                         true, Arg.Any<Guid>(), out membershipCreateStatus);
             }
         }
     }
