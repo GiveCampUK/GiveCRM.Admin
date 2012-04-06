@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using System.Web.Security;
 using AutoMapper;
-using GiveCRM.Admin.DataAccess;
+using GiveCRM.Admin.BusinessLogic;
 using GiveCRM.Admin.Models;
 using GiveCRM.Admin.Web.Extensions;
 using GiveCRM.Admin.Web.Helpers;
@@ -18,13 +18,35 @@ namespace GiveCRM.Admin.Web.Controllers
     {
         private readonly IConfiguration configuration;
         private readonly ISignUpQueueingService signUpQueueingService;
-        private readonly ICharityMembershipService _charityMembershipService;
+        private readonly ICharityMembershipService charityMembershipService;
+        private readonly IMembershipService membershipService;
 
-        public SignUpController(IConfiguration configuration, ISignUpQueueingService signUpQueueingService, ICharityMembershipService charityMembershipService)
+        public SignUpController(IConfiguration configuration, ISignUpQueueingService signUpQueueingService, ICharityMembershipService charityMembershipService, IMembershipService membershipService)
         {
+            if (configuration == null)
+            {
+                throw new ArgumentNullException("configuration");
+            }
+
+            if (signUpQueueingService == null)
+            {
+                throw new ArgumentNullException("signUpQueueingService");
+            }
+
+            if (charityMembershipService == null)
+            {
+                throw new ArgumentNullException("charityMembershipService");
+            }
+
+            if (membershipService == null)
+            {
+                throw new ArgumentNullException("membershipService");
+            }
+
             this.configuration = configuration;
             this.signUpQueueingService = signUpQueueingService;
-            _charityMembershipService = charityMembershipService;
+            this.charityMembershipService = charityMembershipService;
+            this.membershipService = membershipService;
         }
 
         [HttpGet]
@@ -47,26 +69,57 @@ namespace GiveCRM.Admin.Web.Controllers
             var registrationInfo = new RegistrationInfo();
             Mapper.DynamicMap(requiredInfoViewModel, registrationInfo);
 
-            var result = _charityMembershipService.RegisterUserAndCharity(registrationInfo);
-
-            if (result)
+            string userIdentifier = registrationInfo.UserIdentifier;
+            var userRegistrationStatus = membershipService.CreateUser(userIdentifier, registrationInfo.Password, userIdentifier);
+            if (userRegistrationStatus == UserCreationResult.DuplicateEmail)
             {
-                var emailViewModel = new EmailViewModel
-                                         {
-                                             To = requiredInfoViewModel.UserIdentifier,
-                                             ActivationToken = activationToken.AsQueryString()
-                                         };
-
-                signUpQueueingService.QueueEmail(emailViewModel);
-                signUpQueueingService.QueueProvisioning();
-
-                TempData["SubDomain"] = subDomain;
-
-                return RedirectToAction("Complete");
+                ModelState.AddModelError("UserIdentifier",
+                                         "You have already registered with GiveCRM.  Would you like to log in instead?");
+                return View(requiredInfoViewModel);
             }
 
-            ModelState.AddModelError("", "User and Charity registration failed. Please contact support.");
+            if (userRegistrationStatus == UserCreationResult.Success)
+            {
+                bool result = CreateCharity(registrationInfo);
+
+                if (result)
+                {
+                    ProvisionService(requiredInfoViewModel, activationToken);
+                    TempData["SubDomain"] = subDomain;
+
+                    return RedirectToAction("Complete");
+                }
+
+                ModelState.AddModelError("", "Charity registration failed. Please contact support.");
+                return View();
+            }
+
+            ModelState.AddModelError("", "User registration failed. Please contact support.");
             return View();
+        }
+
+        private void ProvisionService(RequiredInfoViewModel requiredInfoViewModel, Guid activationToken)
+        {
+            var emailViewModel = new EmailViewModel
+                                     {
+                                         To = requiredInfoViewModel.UserIdentifier,
+                                         ActivationToken = activationToken.AsQueryString()
+                                     };
+
+            signUpQueueingService.QueueEmail(emailViewModel);
+            signUpQueueingService.QueueProvisioning();
+        }
+
+        private bool CreateCharity(RegistrationInfo registrationInfo)
+        {
+            var membershipUser = membershipService.GetUser(registrationInfo.UserIdentifier);
+            if (membershipUser != null)
+            {
+                var user = new User {Email = membershipUser.Email, Username = membershipUser.UserName};
+                return charityMembershipService.RegisterCharityWithUser(registrationInfo, user);
+            }
+
+            return false;
         }
 
         [HttpGet]
