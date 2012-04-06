@@ -120,7 +120,7 @@ namespace GiveCRM.Admin.Web.Tests.Services
             }
 
             [Test]
-            public void ReturnsDuplicateEmail_WhenTheEmailAddressIsAlreadyRegistered()
+            public void ReturnDuplicateEmail_WhenTheEmailAddressIsAlreadyRegistered()
             {
                 var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.DuplicateEmail);
                 var membershipService = new AspMembershipService(membershipProvider);
@@ -128,6 +128,17 @@ namespace GiveCRM.Admin.Web.Tests.Services
                 var result = membershipService.CreateUser(Username, Password, Email);
 
                 Assert.That(result, Is.EqualTo(UserCreationResult.DuplicateEmail));
+            }
+
+            [Test]
+            public void ReturnDuplicateUsername_WhenTheUsernameIsAlreadyTaken()
+            {
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.DuplicateUserName);
+                var membershipService = new AspMembershipService(membershipProvider);
+
+                var result = membershipService.CreateUser(Username, Password, Email);
+
+                Assert.That(result, Is.EqualTo(UserCreationResult.DuplicateUsername));
             }
 
             [Test]
