@@ -89,9 +89,12 @@ namespace GiveCRM.Admin.Web.Controllers
 
                     return RedirectToAction("Complete");
                 }
+
+                ModelState.AddModelError("", "Charity registration failed. Please contact support.");
+                return View();
             }
 
-            ModelState.AddModelError("", "User and Charity registration failed. Please contact support.");
+            ModelState.AddModelError("", "User registration failed. Please contact support.");
             return View();
         }
 
