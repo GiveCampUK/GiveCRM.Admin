@@ -171,6 +171,19 @@ namespace GiveCRM.Admin.Web.Tests.Services
             }
 
             [Test]
+            public void ReturnInvalidPassword_WhenThePasswordIsNotValid()
+            {
+                const string invalidPassword = "lkfjgh";
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.InvalidPassword,
+                                                                      password: invalidPassword);
+                var membershipService = new AspMembershipService(membershipProvider);
+
+                var result = membershipService.CreateUser(Username, invalidPassword, Email);
+
+                Assert.That(result, Is.EqualTo(UserCreationResult.InvalidPassword));
+            }
+
+            [Test]
             public void CallAspMembershipProviderCreateUser()
             {
                 var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.Success);
