@@ -158,6 +158,19 @@ namespace GiveCRM.Admin.Web.Tests.Services
             }
 
             [Test]
+            public void ReturnInvalidUsername_WhenTheUsernameIsNotValid()
+            {
+                const string invalidUsername = @"_.`§±'""\";
+                var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.InvalidUserName,
+                                                                      username: invalidUsername);
+                var membershipService = new AspMembershipService(membershipProvider);
+
+                var result = membershipService.CreateUser(invalidUsername, Password, Email);
+
+                Assert.That(result, Is.EqualTo(UserCreationResult.InvalidUsername));
+            }
+
+            [Test]
             public void CallAspMembershipProviderCreateUser()
             {
                 var membershipProvider = CreateMockMembershipProvider(MembershipCreateStatus.Success);
