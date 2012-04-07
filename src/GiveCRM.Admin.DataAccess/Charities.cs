@@ -1,44 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using GiveCRM.Admin.BusinessLogic;
 using GiveCRM.Admin.Models;
-using Simple.Data;
 
 namespace GiveCRM.Admin.DataAccess
 {
-    public class Charities
+    public class Charities : ICharityRepository
     {
-        private readonly dynamic _db = Database.OpenNamedConnection("GiveCRMAdmin");
+        private readonly dynamic db;
 
-        public Charity Get(int id)
+        public Charities(IDatabaseProvider databaseProvider)
         {
-            return _db.Charity.FindById(id);
+            db = databaseProvider.GetDatabase();
         }
 
-        public IEnumerable<Charity> All()
+        public Charity GetById(int id)
         {
-            return _db.Charity.All().Cast<Charity>();
+            return db.Charity.FindById(id);
         }
 
-        public Charity GetByUserId(string userId)
+        public IEnumerable<Charity> GetAll()
         {
-            return _db.Charity.FindByUserId(userId);
+            return db.Charity.All().Cast<Charity>();
         }
 
-        public Charity Insert(Charity charity)
+        public Charity GetByUserName(string userName)
         {
-            return _db.Charity.Insert(charity);
+            return db.Charity.FindByUserId(userName);
         }
 
-        public void Update(Charity charity)
+        public Charity Save(Charity charity)
         {
-            _db.Charity.UpdateById(charity);
+            return db.Charity.Upsert(charity);
         }
 
-        public void Delete(Charity charity)
+        public bool Delete(Charity charity)
         {
-            _db.Charity.DeleteById(charity.Id);
+            return DeleteById(charity.Id);
+        }
+
+        public bool DeleteById(int id)
+        {
+            return db.Charity.DeleteById(id) == 1;
         }
     }
 }

@@ -2,43 +2,48 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GiveCRM.Admin.BusinessLogic;
 using GiveCRM.Admin.Models;
-using Simple.Data;
 
 namespace GiveCRM.Admin.DataAccess
 {
-    public class CharitiesMemberships
+    public class CharitiesMemberships : ICharitiesMembershipRepository
     {
-        private readonly dynamic _db = Database.OpenNamedConnection("GiveCRMAdmin");
+        private readonly dynamic db;
 
-        public CharityMembership Get(int id)
+        public CharitiesMemberships(dynamic connection)
         {
-            return _db.CharityMembership.FindById(id);
+            db = connection;
         }
 
-        public IEnumerable<CharityMembership> All()
+        public CharityMembership GetById(int id)
         {
-            return _db.CharityMembership.All().Cast<CharityMembership>();
+            return db.CharityMembership.FindById(id);
+        }
+
+        public IEnumerable<CharityMembership> GetAll()
+        {
+            return db.CharityMembership.All().Cast<CharityMembership>();
         }
 
         public CharityMembership GetByUserId(string userId)
         {
-            return _db.CharityMembership.FindByUserId(userId);
+            return db.CharityMembership.FindByUserId(userId);
         }
 
-        public CharityMembership Insert(CharityMembership charityMembership)
+        public CharityMembership Save(CharityMembership charityMembership)
         {
-            return _db.CharityMembership.Insert(charityMembership);
+            return db.CharityMembership.Upsert(charityMembership);
         }
 
-        public void Update(CharityMembership charityMembership)
+        public bool Delete(CharityMembership charityMembership)
         {
-            _db.CharityMembership.UpdateById(charityMembership);
+            return DeleteById(charityMembership.Id);
         }
 
-        public void Delete(CharityMembership charityMembership)
+        public bool DeleteById(int id)
         {
-            _db.CharityMembership.DeleteById(charityMembership.Id);
+            return db.CharityMembership.DeleteById(id) == 1;
         }
     }
 }

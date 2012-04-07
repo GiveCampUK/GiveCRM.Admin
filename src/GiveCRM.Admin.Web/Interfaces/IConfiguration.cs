@@ -2,8 +2,8 @@
 {
     public interface IConfiguration
     {
-        string BaseDomain { get; set; }
-        string ExcelTemplatePath { get; set; }
-        string CrmTestUrl { get; set; }
+        string BaseDomain { get; }
+        string ExcelTemplatePath { get;  }
+        string CrmTestUrl { get;  }
     }
 }
