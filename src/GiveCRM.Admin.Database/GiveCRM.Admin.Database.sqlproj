@@ -9,6 +9,7 @@
     </PostConversionAddToScc>
     <PostConversionCheckOutFromScc>
     </PostConversionCheckOutFromScc>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
