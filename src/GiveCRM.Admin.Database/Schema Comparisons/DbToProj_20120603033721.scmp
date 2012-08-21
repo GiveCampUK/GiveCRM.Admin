@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SchemaComparison>
-  <Version>10</Version>
+  <Version>1</Version>
   <SourceModelProvider>
     <ConnectionBasedModelProvider>
       <ConnectionString>Data Source=MARK-LAPTOP;Initial Catalog=GiveCRM.Admin.Database;Integrated Security=True;Pooling=False</ConnectionString>
@@ -24,7 +24,7 @@
     </SchemaCompareSettingsService>
     <ConfigurationOptionsElement>
       <PropertyElementName>
-        <Name>SqlDeploymentOptions</Name>
+        <Name>PlanGenerationType</Name>
         <Value>Sql100SchemaDeploymentOptions</Value>
       </PropertyElementName>
       <PropertyElementName>
@@ -32,7 +32,7 @@
         <Value>True</Value>
       </PropertyElementName>
       <PropertyElementName>
-        <Name>NoAlterStatementsToChangeCLRTypes</Name>
+        <Name>DoNotUseAlterAssemblyStatementsToUpdateCLRTypes</Name>
         <Value>False</Value>
       </PropertyElementName>
       <PropertyElementName>
@@ -196,7 +196,7 @@
         <Value>UseSourceModelCollation</Value>
       </PropertyElementName>
       <PropertyElementName>
-        <Name>BlockOnPossibleDataLoss</Name>
+        <Name>BlockIncrementalDeploymentIfDataLoss</Name>
         <Value>False</Value>
       </PropertyElementName>
       <PropertyElementName>
@@ -204,11 +204,11 @@
         <Value>True</Value>
       </PropertyElementName>
       <PropertyElementName>
-        <Name>BackupDatabaseBeforeChanges</Name>
+        <Name>PerformDatabaseBackup</Name>
         <Value>False</Value>
       </PropertyElementName>
       <PropertyElementName>
-        <Name>DeployDatabaseInSingleUserMode</Name>
+        <Name>SingleUserMode</Name>
         <Value>False</Value>
       </PropertyElementName>
       <PropertyElementName>
@@ -280,11 +280,11 @@
         <Value>True</Value>
       </PropertyElementName>
       <PropertyElementName>
-        <Name>CreateNewDatabase</Name>
+        <Name>AlwaysCreateNewDatabase</Name>
         <Value>False</Value>
       </PropertyElementName>
       <PropertyElementName>
-        <Name>DropObjectsNotInSource</Name>
+        <Name>GenerateDropsIfNotInProject</Name>
         <Value>True</Value>
       </PropertyElementName>
       <PropertyElementName>
@@ -300,14 +300,13 @@
         <Value>True</Value>
       </PropertyElementName>
       <PropertyElementName>
-        <Name>Microsoft.Data.Tools.Schema.Sql.SchemaModel.SqlPermissionStatement</Name>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlPermissionStatement</Name>
         <Value>ExcludedType</Value>
       </PropertyElementName>
       <PropertyElementName>
-        <Name>Microsoft.Data.Tools.Schema.Sql.SchemaModel.SqlExtendedProperty</Name>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlExtendedProperty</Name>
         <Value>ExcludedType</Value>
       </PropertyElementName>
     </ConfigurationOptionsElement>
   </SchemaCompareSettingsService>
-  <SchemaCompareViewSettings />
 </SchemaComparison>
