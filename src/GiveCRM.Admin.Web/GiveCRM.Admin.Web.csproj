@@ -72,14 +72,17 @@
     <Reference Include="RazorEngine">
       <HintPath>..\packages\RazorEngine.2.1\lib\.NetFramework 4.0\RazorEngine.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data">
-      <HintPath>..\packages\Simple.Data.Core.0.9.8.1\lib\net40\Simple.Data.dll</HintPath>
+    <Reference Include="Simple.Data, Version=0.18.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Simple.Data.Core.1.0.0-rc3\lib\net40\Simple.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data.Ado">
-      <HintPath>..\packages\Simple.Data.Ado.0.9.8.1\lib\net40\Simple.Data.Ado.dll</HintPath>
+    <Reference Include="Simple.Data.Ado, Version=0.18.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Simple.Data.Ado.1.0.0-rc3\lib\net40\Simple.Data.Ado.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data.SqlServer">
-      <HintPath>..\packages\Simple.Data.SqlServer.0.9.8.1\lib\net40\Simple.Data.SqlServer.dll</HintPath>
+    <Reference Include="Simple.Data.SqlServer, Version=0.18.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Simple.Data.SqlServer.1.0.0-rc3\lib\net40\Simple.Data.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
