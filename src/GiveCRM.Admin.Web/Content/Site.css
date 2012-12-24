@@ -1,12 +1,7 @@
 ﻿body {
-	padding-top: 40px;
+    padding-top: 60px;
 }
 
-#main {
-	padding-top: 1em;
-}
-
-
-.itemlist > li {
-	margin-bottom: 1em;
+.sidebar-nav {
+    padding: 9px 0;
 }

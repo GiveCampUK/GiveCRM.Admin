@@ -1,8 +1,26 @@
-﻿<div class="fill">
-    <div class="container">
-        <a class="brand" href="#">GiveCRM</a>
-          
-        <div class="pull-right">
-        </div>
+﻿<div class="container-fluid">
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </a>
+    <a class="brand" href="~/"><img alt="" src="/Content/Images/GiveCRM-email-header.png" style="height: 20px" /></a>
+    <div class="nav-collapse collapse">
+        <ul class="nav">
+            <li class="active"><a href="~/">Home</a></li>
+        </ul>
+        @if (Request.IsAuthenticated)
+        {
+            <p class="navbar-text pull-right"> Logged in as @User.Identity.Name</p>
+        }
+        else
+        {
+            using(Html.BeginForm("SignUp", "SignUp", FormMethod.Post, new { @class = "navbar-form pull-right" }))
+            {
+                @Html.TextBox("email", string.Empty, new { placeholder = "Email" })
+                @Html.Password("password", string.Empty, new { placeholder = "Password" })
+                <button type="submit" class="btn">Sign in</button>
+            }
+        }
     </div>
 </div>
