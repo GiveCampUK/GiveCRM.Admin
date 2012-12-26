@@ -3,24 +3,31 @@
     ViewBag.Title = "GiveCRM";
 }
 
-<style>
-li  
-{
-    font-size: 20pt;
-    font-weight: bold;
-    padding-bottom: 15px;
-}
-</style>
-    <div class="row">
-      <div class="span10">
-        <ul>
-            <li>Simple sign up</li>
-            <li>1 to 100,000 members</li>
-            <li>Free</li>
-        </ul>
-        <img alt="" src="/Content/Images/GiveCRMBox3D_344x400.png" />
-      </div>
-      <div class="span6">
+<div class="hero-unit">
+    <h1>GiveCRM</h1>
+    <div class="span4">
         @Html.Partial("SignUpForm")
-      </div>
     </div>
+    <div class="span3">&nbsp;</div>
+    <p><img alt="" src="/Content/Images/GiveCRMBox3D_344x400.png" /></p>
+    @*<p><a class="btn btn-primary btn-large">Sign Up &raquo;</a></p>*@
+</div>
+<div class="row-fluid">
+    <div class="span4">
+        <h2>Simple Sign-Up</h2>
+        <p>Get started quickly with our simple sign-up and import your existing data from Excel</p>
+        <p>@Html.ActionLink("Sign Up", "Index", "Home", null, new { @class = "btn btn-primary" })</p>
+    </div>
+    <div class="span4">
+        <h2>Flexible Sizing</h2>
+        <p>Supporting from 1 to 100,000 members, GiveCRM will grow with you!</p>
+        <p>@Html.ActionLink("Sign Up", "Index", "Home", null, new { @class = "btn btn-primary" })</p>
+    </div>
+    <div class="span4">
+        <h2>Flexible Pricing</h2>
+        <p>With prices starting at $5/month, we're confident we have a plan to suit your needs, and your budget.</p>
+        <p>@Html.ActionLink("Sign Up", "Index", "Home", null, new { @class = "btn btn-primary" })</p>
+    </div>
+</div>
+
+
